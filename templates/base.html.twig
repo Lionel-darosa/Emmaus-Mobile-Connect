@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="{{ asset('build/images/logo-emmaus-connect.png') }}">
+        <link rel="icon" href="{{ asset('build/images/favicon.png') }}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}       
         {% endblock %}
@@ -12,10 +12,12 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+    <body>
     {# <body {{ stimulus_controller('symfony/ux-swup/swup') }} {{ stimulus_target('theme', 'body') }}> #}
         <div id="swup">
-            {% include 'component/navbar.html.twig' %}
+            {% include 'component/_navbar.html.twig' %}
             {% block body %}{% endblock %}
+            {% include 'component/_footer.html.twig' %}
         </div>
     </body>
 </html>

@@ -12,6 +12,10 @@ header h1 {
     color:white;  
 }
 
+#nav-login {
+    padding-right: 1rem;
+}
+
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
