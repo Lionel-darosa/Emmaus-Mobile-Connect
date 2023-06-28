@@ -12,8 +12,10 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        {% include 'component/navbar.html.twig' %}
-        {% block body %}{% endblock %}
+    {# <body {{ stimulus_controller('symfony/ux-swup/swup') }} {{ stimulus_target('theme', 'body') }}> #}
+        <div id="swup">
+            {% include 'component/navbar.html.twig' %}
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>
