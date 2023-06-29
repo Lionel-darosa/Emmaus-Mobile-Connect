@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block body %}
+
+<div class="margin">
+    <div class="row justify-content-center">
+        <div id="login">
+
+            <h2 class="text-center mt-4"> Ravie de vous revoir &#128515</h2>
+            <p>Connectez-vous pour accéder à toutes les fonctionnalités du site</p>
+
+            <form action="{{ path('login') }}" method="post" class="mb-3">
+                <label class="form-label" for="username">Email:</label>
+                <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
+
+                <label class="form-label" for="password">Password:</label>
+                <input type="password" id="password" class="form-control" name="_password">
+
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button type="submit" class="btn btn-secondary mt-4">Se connecter</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -82,6 +82,9 @@ class Device
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $soldAt = null;
 
+    #[ORM\Column]
+    private ?float $screenSize = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -175,6 +178,18 @@ class Device
     public function setAgency(?Agency $agency): void
     {
         $this->agency = $agency;
+    }
+
+    public function getScreenSize(): ?float
+    {
+        return $this->screenSize;
+    }
+
+    public function setScreenSize(float $screenSize): static
+    {
+        $this->screenSize = $screenSize;
+
+        return $this;
     }
 
 }

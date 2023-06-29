@@ -8,6 +8,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Service\PriceCalculator;
+use Faker\Factory;
 
 class DeviceFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -15,6 +16,7 @@ class DeviceFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create();
         for ($i = 1; $i <= 30; $i++) {
             $device = new Device();
             $device->setBrand(array_rand(Device::PHONE));
@@ -23,16 +25,13 @@ class DeviceFixtures extends Fixture implements DependentFixtureInterface
             $device->setStorage((array_keys(Device::STORAGE))[mt_rand(0, count(Device::STORAGE) - 1)][0]);               
             $device->setState(Device::STATE[array_rand(Device::STATE)]);
             $device->setAgency($this->getReference('agency_' . Agency::AGENCIES[array_rand(Agency::AGENCIES)]['name']));
+            $device->setScreenSize($faker->randomFloat(1, 4, 10));
 
-            if (Device::PHONE[$device->getBrand()] == 'iphone') {
+            if ($device->getBrand() == 'apple') {
                 $device->setImage(Device::IMG_IPHONE);
-            }
-
-            if (Device::PHONE[$device->getBrand()] == 'samsung') {
+            } elseif ($device->getBrand() == 'samsung') {
                 $device->setImage(Device::IMG_SAMSUNG);
-            }
-
-            if (Device::PHONE[$device->getBrand()] == 'alcatel') {
+            } else {
                 $device->setImage(Device::IMG_ALCATEL);
             }
 
