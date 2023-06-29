@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Device;
+use App\Form\DeviceSearchModelType;
+use App\Form\DeviceSearchPriceType;
 use App\Form\DeviceType;
 use App\Repository\DeviceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,10 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class DeviceController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(DeviceRepository $deviceRepository): Response
+    public function index(Request $request, DeviceRepository $deviceRepository): Response
     {
+        
         return $this->render('device/index.html.twig', [
-            'devices' => $deviceRepository->findAll(),
+            'devices' => $devices,
         ]);
     }
 

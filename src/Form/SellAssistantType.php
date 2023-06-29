@@ -2,22 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Device;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DeviceSearchModelType extends AbstractType
+class SellAssistantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('model', ChoiceType::class, [
-                'choices' => array_merge(...array_values(Device::PHONE)),
-                'required' => false,
-                'label' => 'Modeles',
-            ])
+            ->add('field_name')
         ;
     }
 

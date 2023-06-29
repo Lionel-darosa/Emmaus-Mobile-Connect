@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Device
 {
     public const PHONE = [
-        'Iphone' => [
+        'Apple' => [
             'Iphone 8' => 'iphone_8',
             'Iphone 9' => 'iphone_9'
         ],
