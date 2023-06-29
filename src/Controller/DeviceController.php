@@ -36,23 +36,32 @@ class DeviceController extends AbstractController
     public function new(Request $request, DeviceRepository $deviceRepository, PriceCalculator $priceCalculator): Response
     {
         $device = new Device();
+
+        //Form sauvegarder
         $form = $this->createForm(DeviceType::class, $device);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $price = $priceCalculator->calculate($device);
+            $device->setPrice($price);
             $deviceRepository->save($device, true);
 
             $this->addFlash('success', 'L\'appareil a été bien ajouté au catalogue! :)');
+            
+            return $this->redirectToRoute('device_index_stock', ['price' => $price], Response::HTTP_SEE_OTHER);
+            
+        // }else{
 
-            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
         }
+      
 
         return $this->render('device/new.html.twig', [
             'device' => $device,
             'form' => $form,
-            // 'price' => $priceCalculator->calculate($device)
         ]);
     }
+
+
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Device $device): Response
