@@ -11,20 +11,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/device', name:'device_')]
 class DeviceController extends AbstractController
 {
-    #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(Request $request, DeviceRepository $deviceRepository): Response
+    #[IsGranted('ROLE_EMPLOYEE')]
+    #[Route('/comparateur', name: 'index', methods: ['GET'])]
+    public function index(DeviceRepository $deviceRepository): Response
     {
         
         return $this->render('device/index.html.twig', [
-            'devices' => $devices,
+            'devices' => $deviceRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_EMPLOYEE')]
+    #[Route('/calcul', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, DeviceRepository $deviceRepository): Response
     {
         $device = new Device();

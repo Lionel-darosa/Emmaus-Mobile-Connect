@@ -28,9 +28,9 @@ class DeviceType extends AbstractType
                 'placeholder' => 'Choose an option',
                 'choices' => Device::STORAGE])
 
-            ->add('condition', ChoiceType::class, [
+            ->add('state', ChoiceType::class, [
                 'placeholder' => 'Choose an option',
-                'choices' => Device::CONDITION])
+                'choices' => Device::STATE])
                 
             // ->add('agencies', EntityType::class, [
             //     'class' => Agency::class,
