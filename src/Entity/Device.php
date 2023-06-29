@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\DeviceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
@@ -20,7 +21,7 @@ class Device
     private ?string $model = null;
 
     #[ORM\Column]
-    private ?int $ram = null;
+   private ?int $ram = null;
 
     #[ORM\Column]
     private ?int $storage = null;
