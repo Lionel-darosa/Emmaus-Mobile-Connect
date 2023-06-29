@@ -30,6 +30,20 @@ class DeviceController extends AbstractController
             'devices' => $devices,
         ]);
     }
+    #[IsGranted('ROLE_EMPLOYEE')]
+    #[Route('/comparateur', name: 'index_comparateur', methods: ['GET'])]
+    public function indexComparator(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
+    {
+        $devices = $paginator->paginate(
+            $deviceRepository->findAll(),
+            $request->query->getInt('page', 1),
+            8
+        );
+
+        return $this->render('device/indexComparator.html.twig', [
+            'devices' => $devices,
+        ]);
+    }
 
     #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/calcul', name: 'new', methods: ['GET', 'POST'])]
@@ -83,7 +97,7 @@ class DeviceController extends AbstractController
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$device->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'. $device->getId(), $request->request->get('_token'))) {
             $deviceRepository->remove($device, true);
         }
 
