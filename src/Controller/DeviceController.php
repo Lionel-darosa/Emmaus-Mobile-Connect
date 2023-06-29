@@ -22,6 +22,14 @@ class DeviceController extends AbstractController
             'devices' => $deviceRepository->findAll(),
         ]);
     }
+    #[IsGranted('ROLE_EMPLOYEE')]
+    #[Route('/comparator', name: 'index', methods: ['GET'])]
+    public function indexComparator(DeviceRepository $deviceRepository): Response
+    {
+        return $this->render('device/index.html.twig', [
+            'devices' => $deviceRepository->findAll(),
+        ]);
+    }
 
     #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/calcul', name: 'new', methods: ['GET', 'POST'])]
