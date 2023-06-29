@@ -16,7 +16,7 @@ class AgencyFixtures extends Fixture
 
             $agency->setName($singleAgency['name'])
             ->setAddress($singleAgency['address'])
-            ->setCity($singleAgency['address'])
+            ->setCity($singleAgency['city'])
             ->setZipcode($singleAgency['zipcode']);
 
             $manager->persist($agency);

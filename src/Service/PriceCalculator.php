@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Service;
 
 use App\Entity\Device;
@@ -41,7 +40,7 @@ class PriceCalculator
 
         $totalPrice = $indiceRAM + $indiceStorage;
 
-        $indiceCondition = $device->getState();
+        $indiceCondition = self::STATES[$device->getState()];
 
         return $totalPrice * $indiceCondition;
     }

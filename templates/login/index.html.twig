@@ -8,14 +8,14 @@
     <div class="row justify-content-center">
         <div id="login">
 
-            <h2 class="text-center mt-4"> Ravie de vous revoir &#128515</h2>
-            <p>Connectez-vous pour accéder à toutes les fonctionnalités du site</p>
+            <h2 class="text-center mt-4"> Ravi de vous revoir &#128515</h2>
+            <p>Connectez-vous pour accéder aux fonctionnalités du site.</p>
 
             <form action="{{ path('login') }}" method="post" class="mb-3">
-                <label class="form-label" for="username">Email:</label>
+                <label class="form-label" for="username">Email :</label>
                 <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
 
-                <label class="form-label" for="password">Password:</label>
+                <label class="form-label" for="password">Mot de passe :</label>
                 <input type="password" id="password" class="form-control" name="_password">
 
                 {% if error %}

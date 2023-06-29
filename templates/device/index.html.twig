@@ -3,36 +3,48 @@
 {% block title %}Device index{% endblock %}
 
 {% block body %}
-    <h1>Device index</h1>
 
-    <table class="table">
+    <h5 class="mt-4 ms-4">
+        {{ devices.getTotalItemCount }}
+        téléphones en stock
+    </h5>
+
+    <a href="{{ path('device_new') }}" class="ms-4">Ajouter un téléphone</a>
+<div class="m-4">
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Ram</th>
-                <th>Storage</th>
-                <th>Condition</th>
-                <th>Price</th>
-                <th>Availability</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Marque</th>
+                <th scope="col">modèle</th>
+                <th scope="col">Aperçu</th>
+                <th scope="col">Taille de l'écran</th>
+                <th scope="col">Ram</th>
+                <th scope="col">Stockage</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Disponibilté</th>
+                <th scope="col">Lieu de stockage</th>
+                <th scope="col">Options</th>
             </tr>
         </thead>
         <tbody>
         {% for device in devices %}
             <tr>
                 <td>{{ device.id }}</td>
-                <td>{{ device.brand }}</td>
-                <td>{{ device.model }}</td>
+                <td>{{ device.brand|capitalize }}</td>
+                <td>{{ device.model|replace({'_': " "})|capitalize }}</td>
+                <td><img id="phone-image" src="{{ device.image }}"></td>
+                <td>{{ device.screenSize }}</td>
                 <td>{{ device.ram }}</td>
                 <td>{{ device.storage }}</td>
                 <td>{{ device.state }}</td>
                 <td>{{ device.price }}</td>
                 <td>{{ device.soldAt ? 'Non' : 'Oui' }}</td>
+                <td>{{ device.agency.name|capitalize }}</td>
                 <td>
-                    <a href="{{ path('device_show', {'id': device.id}) }}">show</a>
-                    <a href="{{ path('device_edit', {'id': device.id}) }}">edit</a>
+                    <a href="{{ path('device_show', {'id': device.id}) }}">Voir</a>
+                    <a href="{{ path('device_edit', {'id': device.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -42,6 +54,9 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
+    <div class="navigation d-flex justify-content-center mt-4">
+	    {{ knp_pagination_render(devices) }}
+    </div>
 
-    <a href="{{ path('device_new') }}">Create new</a>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Agency;
 use App\Repository\DeviceRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,19 +10,27 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
 {
+    public const IMG_IPHONE = 'iphone.png' ;
+    public const IMG_SAMSUNG = 'samsung.png' ;
+    public const IMG_ALCATEL = 'alcatel.png' ;
+
     public const PHONE = [
-        'Apple' => [
+        'apple' => [
             'Iphone 8' => 'iphone_8',
             'Iphone 9' => 'iphone_9'
         ],
-        'Samsung' => [
+        'samsung' => [
             'Galaxy S9' => 'samsung_9',
             'Galaxy S10' => 'samsung_10'
+        ],
+        'alcatel' => [
+            'F 530' => 'F 530',
+            '4039' => '4039'
         ]
     ] ;
 
     public const STATE = [
-        'DEE', 'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
+        'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
     ];
 
     public const RAM = [
@@ -56,7 +65,7 @@ class Device
     private ?string $model = null;
 
     #[ORM\Column]
-   private ?int $ram = null;
+    private ?int $ram = null;
 
     #[ORM\Column]
     private ?int $storage = null;
@@ -76,6 +85,9 @@ class Device
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $soldAt = null;
+
+    #[ORM\Column]
+    private ?float $screenSize = null;
 
     public function getId(): ?int
     {
@@ -144,7 +156,7 @@ class Device
 
     public function getImage(): ?string
     {
-        return 'uploads/phonePics' . $this->image;
+        return $this->image;
     }
 
     public function setImage(string $image): void
@@ -170,6 +182,18 @@ class Device
     public function setAgency(?Agency $agency): void
     {
         $this->agency = $agency;
+    }
+
+    public function getScreenSize(): ?float
+    {
+        return $this->screenSize;
+    }
+
+    public function setScreenSize(float $screenSize): static
+    {
+        $this->screenSize = $screenSize;
+
+        return $this;
     }
 
 }
