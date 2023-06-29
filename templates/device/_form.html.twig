@@ -1,0 +1,89 @@
+{{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+    {# <div class="form-group mt-4">{{ form_row(form.brand, {'attr': {'class':'form-control'}}) }} #}
+        {# help brand #}
+        {# <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        La marque du téléphone est situé en bas à l'arrière de l'appareil, juste après le mot 'by'.
+                    </div>
+                </div>
+            </div>
+        </div> #}
+
+  
+	<div class="form-group mt-4">{{ form_row(form.model, {'attr': {'class':'form-control'}}) }}
+        {# help model #}
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Le modèle est situé à l'arrière, en bas et en grosses lettres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+	<div class="form-group mt-4">{{ form_row(form.ram, {'attr': {'class':'form-control'}}) }}
+        {# help ram #}
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Déverrouillez le téléphone.<br>
+                        Cliquez sur l'icône de réglages <img class="img_icon fa-border" src="{{ asset('build/images/config-iphone.png') }}" alt="configuration"/>.<br>
+                        Sur <strong>Android</strong>, allez dans "A propos du téléphone > Storage".<br>
+                        Sur <strong>iPhone</strong>, cliquez sur "Général > Informations", et l'état de la mémoire sera affiché.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="form-group mt-4">{{ form_row(form.storage, {'attr': {'class':'form-control'}}) }}
+        {# help storage #}
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Déverrouillez le téléphone.<br>
+                        Cliquez sur l'icône de réglages <img class="img_icon fa-border" src="{{ asset('build/images/config-iphone.png') }}" alt="configuration"/>.<br>
+                        Sur <strong>Android</strong>, allez dans "A propos du téléphone > Storage".<br>
+                        Sur <strong>iPhone</strong>, cliquez sur "Général > Informations", et l'état de la mémoire sera affiché.
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="form-group mt-4">{{ form_row(form.condition, {'attr': {'class':'form-control'}}) }}</div>
+
+    {# <div class="form-group mt-4">{{ form_row(form.agency) }}</div> #}
+
+    <div class="form-check  mt-4">
+        <input type="checkbox" class="form-check-input" id="check">
+        <label class="form-check-label" for="exampleCheck1">Je confirme que le téléphone dispose d'un câble et d'un chargeur.</label>
+    </div>
+    <button class="btn btn-primary mt-4">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

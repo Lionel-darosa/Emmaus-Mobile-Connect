@@ -17,7 +17,7 @@ class DeviceFixtures extends Fixture implements DependentFixtureInterface
             $device->setBrand(array_rand(Device::PHONE));
             $device->setModel(Device::PHONE[$device->getBrand()][array_rand(Device::PHONE[$device->getBrand()])]);
             $device->setRam(Device::RAM[array_rand(Device::RAM)]);
-            $device->setStorage((array_keys(Device::STORAGE))[mt_rand(0, count(Device::STORAGE))]);               
+            $device->setStorage((array_keys(Device::STORAGE))[mt_rand(0, count(Device::STORAGE) - 1)][0]);               
             $device->setState(Device::STATE[array_rand(Device::STATE)]);
             $device->setAgency($this->getReference('agency_' . Agency::AGENCIES[array_rand(Agency::AGENCIES)]['name']));
 
