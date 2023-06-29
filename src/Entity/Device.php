@@ -10,9 +10,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Device
 {
     public const PHONE = [
-        'Iphone' => ['Iphone8', 'Iphone9'],
-        'Samsung' => ['S8', 'S9'],
-        'Alcatel' => ['A9', 'A10'],
+        'Iphone' => [
+            'Iphone 8' => 'iphone_8',
+            'Iphone 9' => 'iphone_9'
+        ],
+        'Samsung' => [
+            'Galaxy S9' => 'samsung_9',
+            'Galaxy S10' => 'samsung_10'
+        ]
     ] ;
 
     public const CONDITION = [
@@ -20,11 +25,19 @@ class Device
     ];
 
     public const RAM = [
-        2, 4, 8, 12, 16
+        '2GB' => 2,
+        '4GB' => 4,
+        '8GB' => 8,
+        '12GB' => 12,
+        '16GB' => 16
     ];
 
     public const STORAGE = [
-        32, 64, 128, 256, 512,
+        '32GB' => 32,
+        '64GB' => 64,
+        '128GB' => 128,
+        '256GB' => 256,
+        '512GB' => 512,
     ];
 
     #[ORM\Id]
