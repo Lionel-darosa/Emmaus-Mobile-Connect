@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Device;
 use App\Form\DeviceType;
 use App\Repository\DeviceRepository;
+use App\Service\PriceCalculator;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +47,7 @@ class DeviceController extends AbstractController
 
     #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/calcul', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, DeviceRepository $deviceRepository): Response
+    public function new(Request $request, DeviceRepository $deviceRepository, PriceCalculator $priceCalculator): Response
     {
         $device = new Device();
         $form = $this->createForm(DeviceType::class, $device);
@@ -57,12 +58,13 @@ class DeviceController extends AbstractController
 
             $this->addFlash('success', 'L\'appareil a été bien ajouté au catalogue! :)');
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('device/new.html.twig', [
             'device' => $device,
             'form' => $form,
+            // 'price' => $priceCalculator->calculate($device)
         ]);
     }
 
@@ -83,7 +85,7 @@ class DeviceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $deviceRepository->save($device, true);
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('device/edit.html.twig', [
@@ -95,12 +97,12 @@ class DeviceController extends AbstractController
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$device->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'. $device->getId(), $request->request->get('_token'))) {
             $deviceRepository->remove($device, true);
         }
 
         $this->addFlash('danger', 'Oh! L\'appareil a été bien supprimé du catalogue! :(');
 
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -5,14 +5,17 @@
 {% block body %}
 
 <header class="text-center">
-{# <h1 <span {{ stimulus_controller('symfony/ux-typed', {
-                strings: [
-                    'Rien ne se perd',
-                    'Tout se transforme',
-                ],
-            }) }} </span> 
-        </h1> #}
-    <h1>Rien ne se perd tout se transforme </h1>
+    <div class="p-5" style="font-size: 1.3em;">
+        <h1 {{ stimulus_controller('symfony/ux-typed', { 
+                strings: [ 'Rien ne se perd',
+                    'Tout se transforme', ], 
+                loop: true, 
+                showCursor: true, 
+                backSpeed: 65, 
+                } ) }}>
+        </h1>
+    </div>
+
     <img src="{{ asset('build/images/mobiles2.png') }}" alt="header" style="width:40%;">
 </header>
 

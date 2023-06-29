@@ -27,7 +27,7 @@ class Device
     ] ;
 
     public const STATE = [
-        'RÉPARABLE', 'BLOQUÉ', 'RECONDITIONNABLE', 'RECONDITIONNÉ'
+        'RÉPARABLE', 'BLOQUÉ', 'RECONDITIONNABLE', 'RECONDITIONNÉ',
     ];
 
     public const RAM = [
@@ -51,7 +51,7 @@ class Device
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable:true)]
     private ?string $brand = null;
 
     #[ORM\Column(length: 100)]
