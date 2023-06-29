@@ -1,5 +1,5 @@
 {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
-	<div class="form-group mt-4">{{ form_row(form.model, {'attr': {'class':'form-control'}}) }}
+    <div class="form-group mt-4">{{ form_row(form.model, {'attr': {'class':'form-control'}}) }}
         {# help model #}
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
@@ -67,5 +67,5 @@
         <input type="checkbox" class="form-check-input" id="check">
         <label class="form-check-label" for="exampleCheck1">Je confirme que le téléphone dispose d'un câble et d'un chargeur.</label>
     </div>
-    <button class="btn btn-secondary mt-4">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-secondary mt-4">{{ button_label|default('Calculer') }}</button>
 {{ form_end(form) }}
