@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Agency;
 use App\Repository\DeviceRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,18 +11,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Device
 {
     public const PHONE = [
-        'Iphone' => [
-            'Iphone 8' => 'iphone_8',
-            'Iphone 9' => 'iphone_9'
+        'Apple' => [
+            'iPhone 8' => 'iPhone_8',
+            'iPhone 9' => 'iPhone_9'
         ],
         'Samsung' => [
-            'Galaxy S9' => 'samsung_9',
-            'Galaxy S10' => 'samsung_10'
+            'Galaxy S9' => 'Samsung_9',
+            'Galaxy S10' => 'Samsung_10'
+        ],
+        'Alcatel' => [
+            'F 530' => 'F 530',
+            '4039' => '4039'
         ]
     ] ;
 
     public const STATE = [
-        'DEE' => 'DEE',
         'REPARABLE' => 'REPARABLE', 
         'BLOQUE' => 'BLOQUE', 
         'RECONDITIONABLE' => 'RECONDITIONABLE', 
@@ -76,6 +80,9 @@ class Device
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $soldAt = null;
+
+    #[ORM\Column]
+    private ?float $screenSize = null;
 
     public function getId(): ?int
     {
@@ -144,7 +151,7 @@ class Device
 
     public function getImage(): ?string
     {
-        return 'uploads/phonePics' . $this->image;
+        return $this->image;
     }
 
     public function setImage(string $image): void
@@ -170,6 +177,18 @@ class Device
     public function setAgency(?Agency $agency): void
     {
         $this->agency = $agency;
+    }
+
+    public function getScreenSize(): ?float
+    {
+        return $this->screenSize;
+    }
+
+    public function setScreenSize(float $screenSize): static
+    {
+        $this->screenSize = $screenSize;
+
+        return $this;
     }
 
 }

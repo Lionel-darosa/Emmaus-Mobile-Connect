@@ -37,12 +37,12 @@
             </tr>
             <tr>
                 <th>Availability</th>
-                <td>{{ device.availability ? 'Yes' : 'No' }}</td>
+                <td>{{ device.soldAt ? 'Non' : 'Oui' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('device_index') }}">back to list</a>
+    <a href="{{ path('device_index_stock') }}">Back to list</a>
 
     <a href="{{ path('device_edit', {'id': device.id}) }}">edit</a>
 

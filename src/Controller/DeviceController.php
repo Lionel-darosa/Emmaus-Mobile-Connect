@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Device;
 use App\Form\DeviceType;
 use App\Repository\DeviceRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,11 +16,17 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class DeviceController extends AbstractController
 {
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/comparateur', name: 'index', methods: ['GET'])]
-    public function index(DeviceRepository $deviceRepository): Response
+    #[Route('/stock', name: 'index_stock', methods: ['GET'])]
+    public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        return $this->render('device/index.html.twig', [
-            'devices' => $deviceRepository->findAll(),
+        $devices = $paginator->paginate(
+            $deviceRepository->findAll(),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('device/indexStock.html.twig', [
+            'devices' => $devices,
         ]);
     }
 
