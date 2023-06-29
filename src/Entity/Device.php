@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
 {
+
     public const PHONE = [
         'Apple' => [
             'iPhone 8' => 'iPhone_8',
@@ -26,10 +27,7 @@ class Device
     ] ;
 
     public const STATE = [
-        'REPARABLE' => 'REPARABLE', 
-        'BLOQUE' => 'BLOQUE', 
-        'RECONDITIONABLE' => 'RECONDITIONABLE', 
-        'RECONDITIONNE' => 'RECONDITIONNE'
+        'RÉPARABLE', 'BLOQUÉ', 'RECONDITIONNABLE', 'RECONDITIONNÉ',
     ];
 
     public const RAM = [
@@ -79,7 +77,7 @@ class Device
     private ?string $image = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $soldAt = null;
+    private ?\DateTime $soldAt = null;
 
     #[ORM\Column]
     private ?float $screenSize = null;
@@ -159,12 +157,12 @@ class Device
         $this->image = $image;
     }
 
-    public function getSoldAt(): ?\DateTimeImmutable
+    public function getSoldAt(): ?\DateTime
     {
         return $this->soldAt;
     }
 
-    public function setSoldAt(?\DateTimeImmutable $soldAt): void
+    public function setSoldAt(?\DateTime $soldAt): void
     {
         $this->soldAt = $soldAt;
     }

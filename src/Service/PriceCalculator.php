@@ -26,10 +26,10 @@ class PriceCalculator
     ];
 
     public const STATES = [
-        'REPARABLE' => 0.5,
-        'BLOQUE' => 0.9,
-        'RECONDITIONABLE' => 0.95,
-        'RECONDITIONNE' => 1,
+        'RÉPARABLE' => 0.5,
+        'BLOQUÉ' => 0.9,
+        'RECONDITIONNABLE' => 0.95,
+        'RECONDITIONNÉ' => 1,
     ];
 
     public function calculate(Device $device)
