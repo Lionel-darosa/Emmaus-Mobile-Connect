@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 
 <header class="text-center">
-    <div class="p-5" style="font-size: 1.3em;">
-        <h1 {{ stimulus_controller('symfony/ux-typed', { 
-                strings: [ 'Rien ne se perd',
-                    'Tout se transforme', ], 
+    <div class="p-5">
+        <h2> Bienvenue sur Emmaüs Mobile Connect</h2>
+        <h3> Ici, <span {{ stimulus_controller('symfony/ux-typed', {
+            strings: ['rien ne se perd', 'tout se transforme'],
                 loop: true, 
-                showCursor: true, 
+                showCursor: false, 
                 backSpeed: 65, 
-                } ) }}>
-        </h1>
+        }) }}></span></h3>  
     </div>
 
     <img src="{{ asset('build/images/mobiles2.png') }}" alt="header" style="width:40%;">
@@ -22,8 +21,8 @@
 <div class="margin">
 
     <div class="text-center">
-        <h2>Bienvenue sur Emmaüs Mobile Connect</h2>
-        <h6>Une boîte à outil entièrement conçue pour faciliter vos ventes de smartphones en tout genre récupérés pendant les collectes.</h6> 
+        <h3>Emmaüs Mobile Connect</h3>
+        <h6> est une boîte à outil entièrement conçue pour faciliter vos ventes de smartphones en tout genre récupérés pendant les collectes.</h6> 
         <p>Grâce à vous, ils vont avoir une deuxième vie, Youpi &#129412!</p>
     </div>
 
