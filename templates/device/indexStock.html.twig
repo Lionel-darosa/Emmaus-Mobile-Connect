@@ -39,8 +39,8 @@
                     <td>{{ device.screenSize }}</td>
                     <td>{{ device.ram }}</td>
                     <td>{{ device.storage }}</td>
-                    <td>{{ device.state }}</td>
-                    <td>{{ device.price }}</td>
+                    <td>{{ device.state|lower|capitalize}}</td>
+                    <td>{{ device.price }}€</td>
                     <td>{{ device.soldAt ? 'Non' : 'Oui' }}</td>
                     <td>{{ device.agency.name|capitalize }}</td>
                     <td>

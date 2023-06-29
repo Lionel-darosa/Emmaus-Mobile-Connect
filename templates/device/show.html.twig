@@ -12,7 +12,6 @@
         <div class="col-6 mt-4">
             <img id="phone-image-show"src="{{ device.image }}">
         </div>
-    <a href="{{ path('device_index_stock') }}">Back to list</a>
 
         <div class="col-6 mt-4">
             <table class="table table-hover">
@@ -59,15 +58,13 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-primary mt-4">Modifier</a>
+            <a href="{{ path('device_index_comparateur') }}" class="btn btn-secondary mt-4">Comparer</a>
+            <a href="{{ path('device_index_stock') }}" class="btn btn-warning mt-4">Stock</a>
         </div>
     
         <div class="text-center">
 
-	    <form class="mt-4 mb-4" action="{{ path('device_edit', {'id': device.id}) }}" method="get">
-		    <button type="submit" class="btn btn-secondary" style="width:99.49px;" >Modifier</button>
-        </form>
-
-        <a href="{{ path('device_index_stock') }}">Liste des smartphones</a>
 
         {{ include('device/_delete_form.html.twig') }}
         </div>
