@@ -19,9 +19,6 @@ class DeviceFixtures extends Fixture implements DependentFixtureInterface
             $device->setRam(Device::RAM[array_rand(Device::RAM)]);
             $device->setStorage(Device::STORAGE[array_rand(Device::STORAGE)]);
             $device->setState(Device::STATE[array_rand(Device::STATE)]);
-            // $device->setPrice(1.3);
-            // $device->setImage('image');
-            // $device->setSoldAt(new \DateTimeImmutable());
             $device->setAgency($this->getReference('agency_' . Agency::AGENCIES[array_rand(Agency::AGENCIES)]['name']));
 
             $manager->persist($device);
