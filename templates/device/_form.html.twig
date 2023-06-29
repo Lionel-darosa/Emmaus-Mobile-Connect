@@ -1,29 +1,11 @@
 {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
-    {# <div class="form-group mt-4">{{ form_row(form.brand, {'attr': {'class':'form-control'}}) }} #}
-        {# help brand #}
-        {# <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
-                    </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        La marque du téléphone est situé en bas à l'arrière de l'appareil, juste après le mot 'by'.
-                    </div>
-                </div>
-            </div>
-        </div> #}
-
-  
-	<div class="form-group mt-4">{{ form_row(form.model, {'attr': {'class':'form-control'}}) }}
+    <div class="form-group mt-4">{{ form_row(form.model, {'attr': {'class':'form-control'}}) }}
         {# help model #}
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
+                        <strong>Besoin d'aide?</strong>    
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -41,7 +23,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
+                        <strong>Besoin d'aide?</strong>    
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
@@ -62,7 +44,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                        <strong>Besoin d'aide? Cliquez sur moi!</strong>    
+                        <strong>Besoin d'aide?</strong>    
                     </button>
                 </h2>
                 <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
@@ -79,11 +61,11 @@
 
     <div class="form-group mt-4">{{ form_row(form.state, {'attr': {'class':'form-control'}}) }}</div>
 
-    {# <div class="form-group mt-4">{{ form_row(form.agency) }}</div> #}
+    <div class="form-group mt-4">{{ form_row(form.agency, {'attr': {'class':'form-control'}}) }}</div>
 
     <div class="form-check  mt-4">
         <input type="checkbox" class="form-check-input" id="check">
         <label class="form-check-label" for="exampleCheck1">Je confirme que le téléphone dispose d'un câble et d'un chargeur.</label>
     </div>
-    <button class="btn btn-primary mt-4">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-secondary mt-4">{{ button_label|default('Calculer') }}</button>
 {{ form_end(form) }}
