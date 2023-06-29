@@ -43,7 +43,7 @@ class DeviceController extends AbstractController
 
             $this->addFlash('success', 'L\'appareil a été bien ajouté au catalogue! :)');
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('device/new.html.twig', [
@@ -69,7 +69,7 @@ class DeviceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $deviceRepository->save($device, true);
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('device/edit.html.twig', [
@@ -87,6 +87,6 @@ class DeviceController extends AbstractController
 
         $this->addFlash('danger', 'Oh! L\'appareil a été bien supprimé du catalogue! :(');
 
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
     }
 }
