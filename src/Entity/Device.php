@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
 {
-    public const DISPO = ['yes', 'no'];
 
     public const PHONE = [
         'Apple' => [
@@ -28,7 +27,7 @@ class Device
     ] ;
 
     public const STATE = [
-        'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
+        'RÉPARABLE', 'BLOQUÉ', 'RECONDITIONNABLE', 'RECONDITIONNÉ'
     ];
 
     public const RAM = [

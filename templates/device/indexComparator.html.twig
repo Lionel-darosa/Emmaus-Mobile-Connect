@@ -22,7 +22,7 @@
     <li class="list-group-item">{{ device.ram }} G RAM - {{ device.storage }} G</li>
     <li class="list-group-item">Etat : {{ device.state }}</li>
     <li class="list-group-item">Prix : {{ device.price }} EUR</li>
-    <li class="list-group-item">{% if device.soldAt is defined %}<span class="badge bg-success">Disponible</span></li>{% else %}<span class="badge rounded-pill bg-warning">Warning</span>{% endif %}</li>
+    <li class="list-group-item">{% if device.soldAt is not null %}<span class="badge bg-success">Disponible</span></li>{% else %}<span class="badge rounded-pill bg-warning">Vendu</span>{% endif %}</li>
   </ul>
   <div class="card-body">
 	<a href="{{ path('device_show', {'id': device.id}) }}" class="btn btn-outline-info">Voir</a>
