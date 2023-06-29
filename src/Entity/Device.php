@@ -20,7 +20,7 @@ class Device
         ]
     ] ;
 
-    public const CONDITION = [
+    public const STATE = [
         'DEE', 'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
     ];
 
@@ -58,20 +58,20 @@ class Device
     private ?int $storage = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $condition = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?float $price = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $soldAt = null;
+    private ?string $state = null;
 
     #[ORM\ManyToOne(inversedBy: 'devices')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Agency $agency = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $price = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $soldAt = null;
 
     public function getId(): ?int
     {
@@ -83,11 +83,9 @@ class Device
         return $this->brand;
     }
 
-    public function setBrand(string $brand): static
+    public function setBrand(string $brand): void
     {
         $this->brand = $brand;
-
-        return $this;
     }
 
     public function getModel(): ?string
@@ -95,11 +93,9 @@ class Device
         return $this->model;
     }
 
-    public function setModel(string $model): static
+    public function setModel(string $model): void
     {
         $this->model = $model;
-
-        return $this;
     }
 
     public function getRam(): ?int
@@ -107,11 +103,9 @@ class Device
         return $this->ram;
     }
 
-    public function setRam(int $ram): static
+    public function setRam(int $ram): void
     {
         $this->ram = $ram;
-
-        return $this;
     }
 
     public function getStorage(): ?int
@@ -119,23 +113,19 @@ class Device
         return $this->storage;
     }
 
-    public function setStorage(int $storage): static
+    public function setStorage(int $storage): void
     {
         $this->storage = $storage;
-
-        return $this;
     }
 
-    public function getCondition(): ?string
+    public function getState(): ?string
     {
-        return $this->condition;
+        return $this->state;
     }
 
-    public function setCondition(string $condition): static
+    public function setState(string $state): void
     {
-        $this->condition = $condition;
-
-        return $this;
+        $this->state = $state;
     }
 
     public function getPrice(): ?float
@@ -143,11 +133,9 @@ class Device
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(float $price = null): void
     {
         $this->price = $price;
-
-        return $this;
     }
 
     public function getImage(): ?string
@@ -155,11 +143,9 @@ class Device
         return 'uploads/phonePics' . $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(string $image): void
     {
         $this->image = $image;
-
-        return $this;
     }
 
     public function getSoldAt(): ?\DateTimeImmutable
@@ -167,11 +153,9 @@ class Device
         return $this->soldAt;
     }
 
-    public function setSoldAt(?\DateTimeImmutable $soldAt): static
+    public function setSoldAt(?\DateTimeImmutable $soldAt): void
     {
         $this->soldAt = $soldAt;
-
-        return $this;
     }
 
     public function getAgency(): ?Agency
@@ -179,11 +163,9 @@ class Device
         return $this->agency;
     }
 
-    public function setAgency(?Agency $agency): static
+    public function setAgency(?Agency $agency): void
     {
         $this->agency = $agency;
-
-        return $this;
     }
 
 }
