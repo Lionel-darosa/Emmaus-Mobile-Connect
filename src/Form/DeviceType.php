@@ -30,7 +30,7 @@ class DeviceType extends AbstractType
 
             ->add('condition', ChoiceType::class, [
                 'placeholder' => 'Choose an option',
-                'choices' => Device::CONDITION])
+                'choices' => Device::STATE])
                 
             // ->add('agencies', EntityType::class, [
             //     'class' => Agency::class,

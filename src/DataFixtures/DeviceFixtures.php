@@ -7,9 +7,12 @@ use App\Entity\Device;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use App\Service\PriceCalculator;
 
 class DeviceFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(private PriceCalculator $priceCalculator) {}
+
     public function load(ObjectManager $manager): void
     {
         for ($i = 1; $i <= 30; $i++) {
@@ -32,6 +35,9 @@ class DeviceFixtures extends Fixture implements DependentFixtureInterface
             if (Device::PHONE[$device->getBrand()] == 'alcatel') {
                 $device->setImage(Device::IMG_ALCATEL);
             }
+
+            $device->setPrice($this->priceCalculator->calculate($device));
+
             
             $manager->persist($device);
         }

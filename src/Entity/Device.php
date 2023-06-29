@@ -15,15 +15,15 @@ class Device
     public const IMG_ALCATEL = 'alcatel.png' ;
 
     public const PHONE = [
-        'Iphone' => [
+        'apple' => [
             'Iphone 8' => 'iphone_8',
             'Iphone 9' => 'iphone_9'
         ],
-        'Samsung' => [
+        'samsung' => [
             'Galaxy S9' => 'samsung_9',
             'Galaxy S10' => 'samsung_10'
         ],
-        'Alcatel' => [
+        'alcatel' => [
             'F 530' => 'F 530',
             '4039' => '4039'
         ]
