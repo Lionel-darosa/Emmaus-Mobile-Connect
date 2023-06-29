@@ -4,14 +4,20 @@ namespace App\Entity;
 
 use App\Repository\DeviceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
 {
     public const PHONE = [
-        'Iphone' => ['Iphone8', 'Iphone9'],
-        'Samsung' => ['S8', 'S9'],
-        'Alcatel' => ['A9', 'A10'],
+        'Iphone' => [
+            'Iphone 8' => 'iphone_8',
+            'Iphone 9' => 'iphone_9'
+        ],
+        'Samsung' => [
+            'Galaxy S9' => 'samsung_9',
+            'Galaxy S10' => 'samsung_10'
+        ]
     ] ;
 
     public const STATE = [
@@ -19,11 +25,19 @@ class Device
     ];
 
     public const RAM = [
-        2, 4, 8, 12, 16
+        '2GB' => 2,
+        '4GB' => 4,
+        '8GB' => 8,
+        '12GB' => 12,
+        '16GB' => 16
     ];
 
     public const STORAGE = [
-        16, 32, 64, 128, 256, 512,
+        '32GB' => 32,
+        '64GB' => 64,
+        '128GB' => 128,
+        '256GB' => 256,
+        '512GB' => 512,
     ];
 
     #[ORM\Id]
@@ -38,7 +52,7 @@ class Device
     private ?string $model = null;
 
     #[ORM\Column]
-    private ?int $ram = null;
+   private ?int $ram = null;
 
     #[ORM\Column]
     private ?int $storage = null;
