@@ -10,20 +10,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
 {
-    public const IMG_IPHONE = 'iphone.png' ;
-    public const IMG_SAMSUNG = 'samsung.png' ;
-    public const IMG_ALCATEL = 'alcatel.png' ;
-
     public const PHONE = [
-        'apple' => [
-            'Iphone 8' => 'iphone_8',
-            'Iphone 9' => 'iphone_9'
+        'Apple' => [
+            'iPhone 8' => 'iPhone_8',
+            'iPhone 9' => 'iPhone_9'
         ],
-        'samsung' => [
-            'Galaxy S9' => 'samsung_9',
-            'Galaxy S10' => 'samsung_10'
+        'Samsung' => [
+            'Galaxy S9' => 'Samsung_9',
+            'Galaxy S10' => 'Samsung_10'
         ],
-        'alcatel' => [
+        'Alcatel' => [
             'F 530' => 'F 530',
             '4039' => '4039'
         ]
