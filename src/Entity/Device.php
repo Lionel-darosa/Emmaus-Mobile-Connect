@@ -58,7 +58,7 @@ class Device
     private ?string $model = null;
 
     #[ORM\Column]
-   private ?int $ram = null;
+    private ?int $ram = null;
 
     #[ORM\Column]
     private ?int $storage = null;
