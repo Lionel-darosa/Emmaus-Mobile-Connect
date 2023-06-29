@@ -21,7 +21,8 @@ security:
                 check_path: login
                 enable_csrf: true
             logout:
-                path: logout    
+                path: logout
+                target: home 
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -32,8 +33,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/device/, roles: ROLE_CONTRIBUTOR }
 
 when@test:
     security:
@@ -47,3 +47,6 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+        role_hierarchy:
+        ROLE_CONTRIBUTOR: ROLE_EMPLOYEE
+        ROLE_ADMIN: ROLE_CONTRIBUTOR

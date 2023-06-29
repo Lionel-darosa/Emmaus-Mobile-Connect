@@ -3,6 +3,7 @@ $secondary: #00acb0;
 
 .nav-item btn {
     margin-left: 0;
+    margin-right: 1rem;
 }
 
 .navbar .container-fluid {
@@ -29,6 +30,10 @@ header h1 {
 
 #login {
     width: 30rem;
+}
+
+.nav-item .btn {
+    margin-left: 1rem;
 }
 
 @import "~bootswatch/dist/minty/variables";

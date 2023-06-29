@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                <a class="nav-link active" href="/home">Home
+                <a class="nav-link active" href="/">Home
                     <span class="visually-hidden">(current)</span>
                 </a>
                 </li>
@@ -15,8 +15,8 @@
             <ul class="navbar-nav d-flex justify-content-end">
                 <li class="nav-item">
                 {% if app.user %}
-                    {{ app.user.email }}
-                        <a class="btn btn-secondary" role="button" href="{{ path('logout') }}"> Se déconnecter</a>
+                    Coucou {{ app.user.firstname }}
+                    <a class="btn btn-secondary" role="button" href="{{ path('logout') }}"> Se déconnecter</a>
                 {% else %}
                     <a class="btn btn-secondary" role="button" href="{{ path('login') }}"> Se connecter </a>
                 {% endif %}

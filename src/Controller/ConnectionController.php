@@ -21,7 +21,7 @@ class ConnectionController extends AbstractController
         ]);
     }
 
-    #[Route('/logout', name: 'logout', methods: ['POST'])]
+    #[Route('/logout', name: 'logout')]
     public function logout(): never
     {
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
