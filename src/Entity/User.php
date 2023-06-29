@@ -13,8 +13,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    public const ROLE_ADMIN = 'ROLE_ADMIN';
-    public const ROLE_EMPLOYEE = 'ROLE_EMPLOYEE';
+    public const ROLE_ADMIN = ['ROLE_ADMIN'];
+    public const ROLE_EMPLOYEE =['ROLE_EMPLOYEE'];
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -33,25 +33,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $address = null;
+    #[ORM\Column(length: 100)]
+    private ?string $firstname = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $zipcode = null;
+    #[ORM\Column(length: 100)]
+    private ?string $lastname = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $city = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $phoneNumber = null;
-
-    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Device::class)]
-    private Collection $devices;
-
-    public function __construct()
-    {
-        $this->devices = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Agency $agency = null;
 
     public function getId(): ?int
     {
@@ -123,81 +112,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getAddress(): ?string
+    public function getFirstname(): ?string
     {
-        return $this->address;
+        return $this->firstname;
     }
 
-    public function setAddress(string $address): static
+    public function setFirstname(string $firstname): static
     {
-        $this->address = $address;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
-    public function getZipcode(): ?string
+    public function getLastname(): ?string
     {
-        return $this->zipcode;
+        return $this->lastname;
     }
 
-    public function setZipcode(string $zipcode): static
+    public function setLastname(string $lastname): static
     {
-        $this->zipcode = $zipcode;
+        $this->lastname = $lastname;
 
         return $this;
     }
 
-    public function getCity(): ?string
+    public function getAgency(): ?Agency
     {
-        return $this->city;
+        return $this->agency;
     }
 
-    public function setCity(string $city): static
+    public function setAgency(?Agency $agency): static
     {
-        $this->city = $city;
+        $this->agency = $agency;
 
         return $this;
     }
 
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber(string $phoneNumber): static
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Device>
-     */
-    public function getDevices(): Collection
-    {
-        return $this->devices;
-    }
-
-    public function addDevice(Device $device): static
-    {
-        if (!$this->devices->contains($device)) {
-            $this->devices->add($device);
-            $device->setStore($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDevice(Device $device): static
-    {
-        if ($this->devices->removeElement($device)) {
-            // set the owning side to null (unless already changed)
-            if ($device->getStore() === $this) {
-                $device->setStore(null);
-            }
-        }
-
-        return $this;
-    }
 }
