@@ -9,10 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Device
 {
     public const PHONE = [
-        'Iphone' => ['Iphone8', 'Iphone9'],
-        'Samsung' => ['S8', 'S9'],
-        'Alcatel' => ['A9', 'A10'],
-    ] ;
+        'iphone' => ['iphone8', 'iphone9'],
+        'samsung' => ['S8', 'S9'],
+        'alcatel' => ['A9', 'A10'],
+    ];
 
     public const CONDITION = [
         'DEE', 'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
@@ -24,6 +24,10 @@ class Device
 
     public const STORAGE = [
         32, 64, 128, 256, 512,
+    ];
+
+    public const PRICE = [
+        '20-30', '30-40', '40-50', '50-60', '60-70', '70-80',
     ];
 
     #[ORM\Id]
