@@ -9,6 +9,24 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
 {
+    public const PHONE = [
+        'Iphone' => ['Iphone8', 'Iphone9'],
+        'Samsung' => ['S8', 'S9'],
+        'Alcatel' => ['A9', 'A10'],
+    ] ;
+
+    public const CONDITION = [
+        'DEE', 'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
+    ];
+
+    public const RAM = [
+        2, 4, 8, 12, 16
+    ];
+
+    public const STORAGE = [
+        32, 64, 128, 256, 512,
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -29,15 +47,18 @@ class Device
     #[ORM\Column(length: 100)]
     private ?string $condition = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $price = null;
 
-    #[ORM\Column]
-    private ?bool $availability = null;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $soldAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'devices')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $store = null;
+    private ?Agency $agency = null;
 
     public function getId(): ?int
     {
@@ -116,27 +137,40 @@ class Device
         return $this;
     }
 
-    public function isAvailability(): ?bool
+    public function getImage(): ?string
     {
-        return $this->availability;
+        return 'uploads/phonePics' . $this->image;
     }
 
-    public function setAvailability(bool $availability): static
+    public function setImage(string $image): static
     {
-        $this->availability = $availability;
+        $this->image = $image;
 
         return $this;
     }
 
-    public function getStore(): ?User
+    public function getSoldAt(): ?\DateTimeImmutable
     {
-        return $this->store;
+        return $this->soldAt;
     }
 
-    public function setStore(?User $store): static
+    public function setSoldAt(?\DateTimeImmutable $soldAt): static
     {
-        $this->store = $store;
+        $this->soldAt = $soldAt;
 
         return $this;
     }
+
+    public function getAgency(): ?Agency
+    {
+        return $this->agency;
+    }
+
+    public function setAgency(?Agency $agency): static
+    {
+        $this->agency = $agency;
+
+        return $this;
+    }
+
 }
