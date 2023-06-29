@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class DeviceController extends AbstractController
 {
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/comparateur', name: 'index', methods: ['GET'])]
+    #[Route('/stock', name: 'index_stock', methods: ['GET'])]
     public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $devices = $paginator->paginate(
@@ -25,15 +25,15 @@ class DeviceController extends AbstractController
             20
         );
 
-        return $this->render('device/index.html.twig', [
+        return $this->render('device/indexStock.html.twig', [
             'devices' => $devices,
         ]);
     }
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/comparator', name: 'index', methods: ['GET'])]
+    #[Route('/comparateur', name: 'index_comparateur', methods: ['GET'])]
     public function indexComparator(DeviceRepository $deviceRepository): Response
     {
-        return $this->render('device/index.html.twig', [
+        return $this->render('device/indexComparator.html.twig', [
             'devices' => $deviceRepository->findAll(),
         ]);
     }
