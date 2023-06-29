@@ -26,7 +26,10 @@ class Device
     ] ;
 
     public const STATE = [
-        'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
+        'REPARABLE' => 'REPARABLE', 
+        'BLOQUE' => 'BLOQUE', 
+        'RECONDITIONABLE' => 'RECONDITIONABLE', 
+        'RECONDITIONNE' => 'RECONDITIONNE'
     ];
 
     public const RAM = [
@@ -57,7 +60,7 @@ class Device
     private ?string $model = null;
 
     #[ORM\Column]
-   private ?int $ram = null;
+    private ?int $ram = null;
 
     #[ORM\Column]
     private ?int $storage = null;
