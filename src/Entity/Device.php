@@ -2,28 +2,50 @@
 
 namespace App\Entity;
 
+use App\Entity\Agency;
 use App\Repository\DeviceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 class Device
 {
+    public const IMG_IPHONE = 'iphone.png' ;
+    public const IMG_SAMSUNG = 'samsung.png' ;
+    public const IMG_ALCATEL = 'alcatel.png' ;
+
     public const PHONE = [
-        'Iphone' => ['Iphone8', 'Iphone9'],
-        'Samsung' => ['S8', 'S9'],
-        'Alcatel' => ['A9', 'A10'],
+        'Iphone' => [
+            'Iphone 8' => 'iphone_8',
+            'Iphone 9' => 'iphone_9'
+        ],
+        'Samsung' => [
+            'Galaxy S9' => 'samsung_9',
+            'Galaxy S10' => 'samsung_10'
+        ],
+        'Alcatel' => [
+            'F 530' => 'F 530',
+            '4039' => '4039'
+        ]
     ] ;
 
     public const STATE = [
-        'DEE', 'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
+        'REPARABLE', 'BLOQUE', 'RECONDITIONABLE', 'RECONDITIONNE'
     ];
 
     public const RAM = [
-        2, 4, 8, 12, 16
+        '2GB' => 2,
+        '4GB' => 4,
+        '8GB' => 8,
+        '12GB' => 12,
+        '16GB' => 16
     ];
 
     public const STORAGE = [
-        16, 32, 64, 128, 256, 512,
+        '32GB' => 32,
+        '64GB' => 64,
+        '128GB' => 128,
+        '256GB' => 256,
+        '512GB' => 512,
     ];
 
     #[ORM\Id]
