@@ -152,7 +152,7 @@ class Device
 
     public function getImage(): ?string
     {
-        return 'uploads/phonePics' . $this->image;
+        return $this->image;
     }
 
     public function setImage(string $image): void
