@@ -16,16 +16,16 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class DeviceController extends AbstractController
 {
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/comparateur', name: 'index', methods: ['GET'])]
+    #[Route('/stock', name: 'index_stock', methods: ['GET'])]
     public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $devices = $paginator->paginate(
             $deviceRepository->findAll(),
             $request->query->getInt('page', 1),
-            20
+            10
         );
 
-        return $this->render('device/index.html.twig', [
+        return $this->render('device/indexStock.html.twig', [
             'devices' => $devices,
         ]);
     }
