@@ -63,9 +63,37 @@
 
     <div class="form-group mt-4">{{ form_row(form.agency, {'attr': {'class':'form-control'}}) }}</div>
 
+
     <div class="form-check  mt-4">
         <input type="checkbox" class="form-check-input" id="check">
         <label class="form-check-label" for="exampleCheck1">Je confirme que le téléphone dispose d'un câble et d'un chargeur.</label>
     </div>
-    <button class="btn btn-secondary mt-4">{{ button_label|default('Calculer') }}</button>
+
+    {# Si click bouton Calculer 
+            appeler service Calculer
+            revenir sur show et afficher resultat
+
+            Et bouton calculer change a sauvgarder #}
+
+
+
+
+
+
+
+
+    <button class="btn btn-secondary mt-4">{{ button_label|default('Sauvegarder') }}</button>
+
+
+
+
+
+
+
+
+
+    <button onclick="location.href='https://www.facebook.com'">Calculer</button>
+
+
+
 {{ form_end(form) }}
