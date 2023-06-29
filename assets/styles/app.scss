@@ -57,7 +57,7 @@ header h1 {
 }
 
 #phone-image {
-    width: 25%;
+    width: 100%;
 }
 
 // form accordion
@@ -71,9 +71,19 @@ header h1 {
     height: 30px;
 }
 
-.form form button.btn.btn-primary.mt-4{
+.form form button.btn.btn-secondary.mt-4{
     margin-left: 50%;
     margin-bottom: 3em;
+}
+
+//Card
+
+.card-title {
+    color: $secondary;
+}
+
+.card:hover {
+    border: 2px solid $primary;
 }
 
 @import "~bootswatch/dist/minty/variables";
