@@ -3,6 +3,7 @@ $secondary: #00acb0;
 
 .nav-item btn {
     margin-left: 0;
+    margin-right: 1rem;
 }
 
 .navbar .container-fluid {
@@ -27,6 +28,14 @@ header h1 {
     padding: 1.5rem;
 }
 
+#login {
+    width: 30rem;
+}
+
+.nav-item .btn {
+    margin-left: 1rem;
+}
+
 //Create device
 .form {
     width: 40%;
@@ -47,14 +56,10 @@ header h1 {
     margin-left: 0.5em;
 }
 
-
-
 // form accordion
 .accordion #collapseOne img.img_icon fa-border {
     height: 30px;
 }
-
-
 
 //image parametres
 #collapseThree img,

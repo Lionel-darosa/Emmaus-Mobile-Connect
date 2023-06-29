@@ -27,22 +27,20 @@ class DeviceType extends AbstractType
                     'choices' => Device::RAM])
 
             ->add('storage', ChoiceType::class, [
-                'placeholder' => 'Choose an option',
-                'label' => 'Stockage',
-                'choices' => Device::STORAGE])
+                    'placeholder' => 'Choose an option',
+                    'label' => 'Stockage',
+                    'choices' => Device::STORAGE])
 
             ->add('state', ChoiceType::class, [
-                'placeholder' => 'Choose an option',
-                'label' => 'État du téléphone',
-                'choices' => Device::STATE])
+                    'placeholder' => 'Choose an option',
+                    'label' => 'État du téléphone',
+                    'choices' => Device::STATE])
 
             ->add('agency', EntityType::class, [
-                'placeholder' => 'Choose an option',
-                'label' => 'Magasin Emmaüs',
-                'class' => Agency::class,
-                'choice_label' => 'city',
-                // 'multiple' => true,
-                // 'expanded' => true,
+                    'placeholder' => 'Choose an option',
+                    'label' => 'Magasin Emmaüs',
+                    'class' => Agency::class,
+                    'choice_label' => 'city',
          ]);
         ;
     }
