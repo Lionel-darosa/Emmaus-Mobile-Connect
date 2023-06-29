@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Device;
 use App\Form\DeviceType;
 use App\Repository\DeviceRepository;
+use App\Service\PriceCalculator;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +33,7 @@ class DeviceController extends AbstractController
 
     #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/calcul', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, DeviceRepository $deviceRepository): Response
+    public function new(Request $request, DeviceRepository $deviceRepository, PriceCalculator $priceCalculator): Response
     {
         $device = new Device();
         $form = $this->createForm(DeviceType::class, $device);
@@ -49,6 +50,7 @@ class DeviceController extends AbstractController
         return $this->render('device/new.html.twig', [
             'device' => $device,
             'form' => $form,
+            // 'price' => $priceCalculator->calculate($device)
         ]);
     }
 
