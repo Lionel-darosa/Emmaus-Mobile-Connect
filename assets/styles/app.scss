@@ -1,6 +1,16 @@
 $primary: #272350;
 $secondary: #00acb0;
 
+$paragraph-margin-bottom: 0;
+
+.nav-item btn {
+    margin-left: 0;
+}
+
+.navbar .container-fluid {
+    margin-right: 1rem;
+}
+
 header {
     background-color: $primary;
     color:white;  
@@ -12,8 +22,11 @@ header h1 {
     color:white;  
 }
 
-#nav-login {
-    padding-right: 1rem;
+.margin {
+    margin: 0 auto;
+    max-width: 1400px;
+    width: 100%;
+    padding: 1.5rem;
 }
 
 @import "~bootswatch/dist/minty/variables";
