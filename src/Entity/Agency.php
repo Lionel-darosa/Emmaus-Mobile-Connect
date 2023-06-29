@@ -11,10 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Agency
 {
     public const AGENCIES = [
-       ['name' => 'Paris', 'address' => '8 rue de la Banque', 'city' => 'Paris', 'zipcode' => 75002 ],
-       ['name' => 'Créteil' , 'address' => '1 place de l\’abbaye', 'city' => 'Créteil', 'zipcode' => 94000],
-       ['name' => 'Strasbourg', 'address' => '33 rue Kageneck', 'city' => 'Strasbourg', 'zipcode' => 67000],
-       ['name' => 'Bordeaux' , 'address' => '205 Cours de la Marne', 'city' => 'Bordeaux', 'zipcode' => 33800],
+       ['name' => 'paris', 'address' => '8 rue de la Banque', 'city' => 'Paris', 'zipcode' => 75002 ],
+       ['name' => 'creteil' , 'address' => '1 place de l\’abbaye', 'city' => 'Créteil', 'zipcode' => 94000],
+       ['name' => 'strasbourg', 'address' => '33 rue Kageneck', 'city' => 'Strasbourg', 'zipcode' => 67000],
+       ['name' => 'bordeaux' , 'address' => '205 Cours de la Marne', 'city' => 'Bordeaux', 'zipcode' => 33800],
     ];
     
     #[ORM\Id]
