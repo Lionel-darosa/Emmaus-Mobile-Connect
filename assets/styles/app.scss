@@ -1,0 +1,32 @@
+$primary: #272350;
+$secondary: #00acb0;
+
+.nav-item btn {
+    margin-left: 0;
+}
+
+.navbar .container-fluid {
+    margin-right: 1rem;
+}
+
+header {
+    background-color: $primary;
+    color:white;  
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+header h1 {
+    color:white;  
+}
+
+.margin {
+    margin: 0 auto;
+    max-width: 1400px;
+    width: 100%;
+    padding: 1.5rem;
+}
+
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";

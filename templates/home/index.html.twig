@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<header class="text-center">
+{# <h1 <span {{ stimulus_controller('symfony/ux-typed', {
+                strings: [
+                    'Rien ne se perd',
+                    'Tout se transforme',
+                ],
+            }) }} </span> 
+        </h1> #}
+    <h1>Rien ne se perd tout se transforme </h1>
+    <img src="{{ asset('build/images/mobiles2.png') }}" alt="header" style="width:40%;">
+</header>
+
+<div class="margin">
+
+    <div class="text-center">
+        <h2>Bienvenue sur Emmaüs Mobile Connect</h2>
+        <h6>Une boîte à outil entierement conçue pour faciliter vos ventes de téléphones mobile en tout genre récupérés pendant les collectes.</h6> 
+        <p>Grâce à vous, ils vont avoir une deuxième vie, Youpi &#129412!</p>
+    </div>
+
+
+    <div class="container text-center">
+        <div class="row justify-content-center">
+
+            <div class="col-10 col-sm-8 col-md-7 col-lg-5 col-xl-4 mt-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Le juste prix</h5>
+                        <p class="card-text">Nous vous guidons pas à pas pour mettre un prix sur chaque téléphone en fonction de ses caractéristiques techniques et de son état.</p>
+                        <a href="#" class="btn btn-secondary">Calculer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-10 col-sm-8 col-md-7 col-lg-5 col-xl-4 mt-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Le comparateur</h5>
+                        <p class="card-text"> Trouvez le téléphone qui correspond le mieux au besoin de votre client en un click</p>
+                        <a href="#" class="btn btn-secondary mt-4">Comparer</a>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+{% endblock %}
