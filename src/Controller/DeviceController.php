@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Device;
 use App\Form\DeviceType;
 use App\Repository\DeviceRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,16 @@ class DeviceController extends AbstractController
 {
     #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/comparateur', name: 'index', methods: ['GET'])]
-    public function index(DeviceRepository $deviceRepository): Response
+    public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $devices = $paginator->paginate(
+            $deviceRepository->findAll(),
+            $request->query->getInt('page', 1),
+            20
+        );
+
         return $this->render('device/index.html.twig', [
-            'devices' => $deviceRepository->findAll(),
+            'devices' => $devices,
         ]);
     }
     #[IsGranted('ROLE_EMPLOYEE')]
