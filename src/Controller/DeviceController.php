@@ -31,10 +31,16 @@ class DeviceController extends AbstractController
     }
     #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/comparateur', name: 'index_comparateur', methods: ['GET'])]
-    public function indexComparator(DeviceRepository $deviceRepository): Response
+    public function indexComparator(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $devices = $paginator->paginate(
+            $deviceRepository->findAll(),
+            $request->query->getInt('page', 1),
+            8
+        );
+
         return $this->render('device/indexComparator.html.twig', [
-            'devices' => $deviceRepository->findAll(),
+            'devices' => $devices,
         ]);
     }
 

@@ -37,6 +37,13 @@ class DeviceFixtures extends Fixture implements DependentFixtureInterface
 
             $device->setPrice($this->priceCalculator->calculate($device));
 
+            if ((Device::DISPO[mt_rand(0,1)]) == 1) {
+                $device->setSoldAt($faker->dateTimeBetween('-54 week', '-1 week'));
+            } else {
+                $device->setSoldAt(null);
+            }
+            
+
             
             $manager->persist($device);
         }
