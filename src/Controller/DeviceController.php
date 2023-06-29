@@ -6,6 +6,7 @@ use App\Entity\Device;
 use App\Form\DeviceSearchModelType;
 use App\Form\DeviceSearchPriceType;
 use App\Form\DeviceType;
+use App\Form\SellAssistantType;
 use App\Repository\DeviceRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,17 +19,30 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class DeviceController extends AbstractController
 {
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/comparateur', name: 'index', methods: ['GET'])]
-    public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
+    #[Route('/comparateur', name: 'index', methods: ['GET', 'POST'])]
+    public function index(Request $request, DeviceRepository $deviceRepository, PaginatorInterface $paginator): Response
     {
-        $devices = $paginator->paginate(
-            $deviceRepository->findAll(),
-            $request->query->getInt('page', 1),
-            20
-        );
+        $form = $this->createForm(SellAssistantType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sort = $form->getData();
+            $devices = $paginator->paginate(
+                $deviceRepository->sortDevices($sort),
+                $request->query->getInt('page', 1),
+                20
+            );
+        } else {
+            $devices = $paginator->paginate(
+                $deviceRepository->findAll(),
+                $request->query->getInt('page', 1),
+                20
+            );
+        }
 
         return $this->render('device/index.html.twig', [
             'devices' => $devices,
+            'form' => $form,
         ]);
     }
 

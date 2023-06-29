@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+    <div class="container">
+    <div class="row">
+        <div class="col">
+            {# {{ form_row(form.screenSize) }} #}
+            {# <input type="button" name="{{ field_name(form.screenSize) }}" value="{{ field_value(form.screenSize) }}" placeholder="{{ field_label(form.screenSize) }}"/> #}
+            <input type="checkbox" class="btn-check" id="btn-check" name="{{ field_name(form.screenSize) }}" value="{{ field_value(form.screenSize) }}" placeholder="{{ field_label(form.screenSize) }}" autocomplete="off">
+            <label class="btn btn-primary" for="btn-check">{{ field_label(form.screenSize) }}</label>
+        </div>
+        <div class="col">
+            {# {{ form_row(form.ram) }} #}
+            <input type="checkbox" class="btn-check" id="btn-check" name="{{ field_name(form.ram) }}" value="{{ field_value(form.ram) }}" placeholder="{{ field_label(form.ram) }}" autocomplete="off">
+            <label class="btn btn-primary" for="btn-check">{{ field_label(form.ram) }}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {# {{ form_row(form.storage) }} #}
+            <input type="checkbox" class="btn-check" id="btn-check" name="{{ field_name(form.storage) }}" value="{{ field_value(form.storage) }}" placeholder="{{ field_label(form.storage) }}" autocomplete="off">
+            <label class="btn btn-primary" for="btn-check">{{ field_label(form.storage) }}</label>
+        </div>
+        <div class="col">
+            {# {{ form_row(form.price) }} #}
+            <input type="checkbox" class="btn-check" id="btn-check" name="{{ field_name(form.price) }}" value="{{ field_value(form.price) }}" placeholder="{{ field_label(form.price) }}" autocomplete="off">
+            <label class="btn btn-primary" for="btn-check">{{ field_label(form.price) }}</label>
+        </div>
+    </div>
+    </div>
+    <button type="submit" class="btn btn-secondary mt-2">Save</button>
+{{ form_end(form) }}
