@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class DeviceType extends AbstractType
 {
@@ -35,6 +36,8 @@ class DeviceType extends AbstractType
                     'placeholder' => 'Choose an option',
                     'label' => 'État du téléphone',
                     'choices' => Device::STATE])
+
+            ->add('image', DropzoneType::class)
 
             ->add('agency', EntityType::class, [
                     'placeholder' => 'Choose an option',
