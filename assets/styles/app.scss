@@ -27,6 +27,46 @@ header h1 {
     padding: 1.5rem;
 }
 
+//Create device
+.form {
+    width: 40%;
+    margin: auto;
+    margin-top: 2em;
+    color: #4f4f4f;
+}
+
+.form input {
+    color: #4f4f4f;
+}
+
+.from h1{
+    margin-bottom: 1em;
+}
+
+#device_store {
+    margin-left: 0.5em;
+}
+
+
+
+// form accordion
+.accordion #collapseOne img.img_icon fa-border {
+    height: 30px;
+}
+
+
+
+//image parametres
+#collapseThree img,
+#collapseFour img {
+    height: 30px;
+}
+
+.form form button.btn.btn-primary.mt-4{
+    margin-left: 50%;
+    margin-bottom: 3em;
+}
+
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
