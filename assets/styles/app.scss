@@ -17,7 +17,8 @@ header {
     padding-bottom: 1rem;
 }
 
-header h1 {
+header h2, 
+header h3 {
     color:white;  
 }
 
@@ -56,8 +57,12 @@ header h1 {
     margin-left: 0.5em;
 }
 
-#phone-image {
+#phone-image-index {
     width: 100%;
+}
+
+#phone-image-show {
+    width: 67%;
 }
 
 // form accordion
@@ -74,6 +79,16 @@ header h1 {
 .form form button.btn.btn-secondary.mt-4{
     margin-left: 40%;
     margin-bottom: 3em;
+}
+
+//Card
+
+.card-title {
+    color: $secondary;
+}
+
+.card:hover {
+    border: 2px solid $primary;
 }
 
 @import "~bootswatch/dist/minty/variables";

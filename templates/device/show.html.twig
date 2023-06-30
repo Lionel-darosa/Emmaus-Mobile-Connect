@@ -1,50 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Device{% endblock %}
+{% block title %}{{ device.model|replace({'_': " "}) }}{% endblock %}
 
 {% block body %}
-    <h1>Device</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ device.id }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ device.brand }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ device.model }}</td>
-            </tr>
-            <tr>
-                <th>Ram</th>
-                <td>{{ device.ram }}</td>
-            </tr>
-            <tr>
-                <th>Storage</th>
-                <td>{{ device.storage }}</td>
-            </tr>
-            <tr>
-                <th>Condition</th>
-                <td>{{ device.state }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ device.price }}</td>
-            </tr>
-            <tr>
-                <th>Availability</th>
-                <td>{{ device.soldAt ? 'Non' : 'Oui' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="margin">
+    <div class=" row justify-content-center">
+        <h3 class="text-center mt-2">{{ device.brand|capitalize }}</h3>
+        <h4 class="text-center">{{ device.model|replace({'_': " "}) }}</h4>
 
-    <a href="{{ path('device_index_stock') }}">Back to list</a>
+        <div class="col-6 mt-4">
+            <img id="phone-image-show"src="{{ device.image }}">
+        </div>
 
-    <a href="{{ path('device_edit', {'id': device.id}) }}">edit</a>
+        <div class="col-6 mt-4">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ device.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Marque</th>
+                        <td>{{ device.brand|capitalize }}</td>
+                    </tr>
+                    <tr>
+                        <th>Modèle</th>
+                        <td>{{ device.model|replace({'_': " "}) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Taille de l'écran</th>
+                        <td>{{ device.screenSize }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ram</th>
+                        <td>{{ device.ram }}</td>
+                    </tr>
+                    <tr>
+                        <th>Stockage</th>
+                        <td>{{ device.storage }}</td>
+                    </tr>
+                    <tr>
+                        <th>Etat</th>
+                        <td>{{ device.state }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prix</th>
+                        <td>{{ device.price }}</td>
+                    </tr>
+                    <tr>
+                        <th>Disponibilté</th>
+                        <td>{{ device.soldAt ? 'Non' : 'Oui' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lieu de stockage</th>
+                        <td>{{ device.agency.name|capitalize }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-primary mt-4">Modifier</a>
+            <a href="{{ path('device_index_comparateur') }}" class="btn btn-secondary mt-4">Comparer</a>
+            <a href="{{ path('device_index_stock') }}" class="btn btn-warning mt-4">Stock</a>
+        </div>
+    
+        <div class="text-center">
 
-    {{ include('device/_delete_form.html.twig') }}
+
+        {{ include('device/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
