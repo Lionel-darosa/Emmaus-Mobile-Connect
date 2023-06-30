@@ -70,9 +70,16 @@ header h3 {
 }
 
 // form accordion
-.accordion #collapseOne img.img_icon fa-border {
+#flush-collapseThree img,
+#flush-collapseFour img{
     height: 30px;
 }
+
+
+
+// .accordion #collapseOne img.img_icon fa-border {
+//     height: 30px;
+// }
 
 //image parametres
 #collapseThree img,
@@ -81,12 +88,11 @@ header h3 {
 }
 
 .form form button.btn.btn-secondary.mt-4{
-    margin-left: 50%;
+    margin-left: 40%;
     margin-bottom: 3em;
 }
 
 //Card
-
 .card-title {
     color: $secondary;
 }
@@ -94,6 +100,18 @@ header h3 {
 .card:hover {
     border: 2px solid $primary;
 }
+
+
+//Boutton 
+form a.btn.btn-secondary.mt-4,
+form a.btn btn-warning.mt-4 {
+    margin-left: 26%;
+}
+
+form a.btn.btn-secondary.mt-4{
+    margin-right: 3em;
+}
+
 
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";

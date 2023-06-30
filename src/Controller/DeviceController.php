@@ -67,23 +67,30 @@ class DeviceController extends AbstractController
     public function new(Request $request, DeviceRepository $deviceRepository, PriceCalculator $priceCalculator): Response
     {
         $device = new Device();
+
+        //Form sauvegarder
         $form = $this->createForm(DeviceType::class, $device);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $price = $priceCalculator->calculate($device);
+            $device->setPrice($price);
             $deviceRepository->save($device, true);
+            var_dump($price);
 
-            $this->addFlash('success', 'L\'appareil a été bien ajouté au catalogue! :)');
+            $this->addFlash('success', 'L\'appareil a été bien ajouté au catalogue avec un prix de ' . $price . '€ ! :)');
 
-            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('device_show', ['id' => $device->getId()], Response::HTTP_SEE_OTHER);
         }
+      
 
         return $this->render('device/new.html.twig', [
             'device' => $device,
             'form' => $form,
-            // 'price' => $priceCalculator->calculate($device)
         ]);
     }
+
+
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Device $device): Response
@@ -102,7 +109,9 @@ class DeviceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $deviceRepository->save($device, true);
 
-            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'L\'appareil a été bien modifié. Il a un prix de ' . $device->getPrice() . '€ ! :)');
+
+            return $this->redirectToRoute('device_index_stock', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('device/edit.html.twig', [
