@@ -27,7 +27,10 @@ class Device
     ] ;
 
     public const STATE = [
-        'RÉPARABLE', 'BLOQUÉ', 'RECONDITIONNABLE', 'RECONDITIONNÉ',
+        'RÉPARABLE' => 'RÉPARABLE', 
+        'BLOQUÉ' => 'BLOQUÉ', 
+        'RECONDITIONNABLE' => 'RECONDITIONNABLE', 
+        'RECONDITIONNÉ' => 'RECONDITIONNÉ',
     ];
 
     public const RAM = [
