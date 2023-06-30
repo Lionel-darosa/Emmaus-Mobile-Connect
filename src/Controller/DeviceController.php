@@ -101,12 +101,14 @@ class DeviceController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Device $device, DeviceRepository $deviceRepository): Response
+    public function edit(Request $request, Device $device, DeviceRepository $deviceRepository, PriceCalculator $priceCalculator): Response
     {
         $form = $this->createForm(DeviceType::class, $device);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $price = $priceCalculator->calculate($device);
+            $device->setPrice($price);
             $deviceRepository->save($device, true);
 
             $this->addFlash('success', 'L\'appareil a été bien modifié. Il a un prix de ' . $device->getPrice() . '€ ! :)');
