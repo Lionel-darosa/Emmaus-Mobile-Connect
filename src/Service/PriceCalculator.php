@@ -12,6 +12,7 @@ class PriceCalculator
         4 => 20,
         6 => 30,
         8 => 30,
+        12 => 30,
         16 => 30,
     ];
 
@@ -34,14 +35,14 @@ class PriceCalculator
 
     public function calculate(Device $device)
     {
-        $indiceRAM = $device->getRam();
+        $indiceRAM = self::RAM_INDICES[$device->getRam()];
 
-        $indiceStorage = $device->getStorage();
+        $indiceStorage = self::STORAGE_INDICES[$device->getStorage()];
 
         $totalPrice = $indiceRAM + $indiceStorage;
 
-        $indiceCondition = self::STATES[$device->getState()];
+        $indiceState = self::STATES[$device->getState()];
 
-        return $totalPrice * $indiceCondition;
+        return $totalPrice * $indiceState;
     }
 }
