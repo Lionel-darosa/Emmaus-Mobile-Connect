@@ -19,11 +19,11 @@ class SellAssistantType extends AbstractType
                 'required' => false,
             ])
             ->add('ram', CheckboxType::class, [
-                'label' => 'Nombreuse appli simultanées',
+                'label' => "Nombreuses applications simultanées",
                 'required' => false,
             ])
             ->add('storage', CheckboxType::class, [
-                'label' => 'Plus de photos/videos',
+                'label' => 'Stockage de photos et vidéos',
                 'required' => false,
             ])
             ->add('price', CheckboxType::class, [
