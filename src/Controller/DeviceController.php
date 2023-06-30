@@ -120,8 +120,8 @@ class DeviceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Device $device, DeviceRepository $deviceRepository): Response
+    #[Route('/delete/{id}', name: 'delete', methods: ['POST', 'GET'])]
+    public function delete( Device $device, Request $request, DeviceRepository $deviceRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'. $device->getId(), $request->request->get('_token'))) {
             $deviceRepository->remove($device, true);
@@ -129,6 +129,6 @@ class DeviceController extends AbstractController
 
         $this->addFlash('danger', 'Oh! L\'appareil a été bien supprimé du catalogue! :(');
 
-        return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('device_index_stock', [], Response::HTTP_SEE_OTHER);
     }
 }

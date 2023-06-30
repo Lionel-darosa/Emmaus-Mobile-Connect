@@ -59,14 +59,14 @@
                 </tbody>
             </table>
             <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-primary mt-4">Modifier</a>
+            {# {{ include('device/_delete_form.html.twig') }} #}
             <a href="{{ path('device_index_comparateur') }}" class="btn btn-secondary mt-4">Comparer</a>
             <a href="{{ path('device_index_stock') }}" class="btn btn-warning mt-4">Stock</a>
+            
         </div>
     
         <div class="text-center">
 
-
-        {{ include('device/_delete_form.html.twig') }}
         </div>
     </div>
 </div>
