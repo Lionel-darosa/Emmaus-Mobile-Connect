@@ -49,7 +49,7 @@ class DeviceType extends AbstractType
                 'label' => 'Taille de l\'écran',
                 ])
 
-            ->add('image', DropzoneType::class)
+            // ->add('image', DropzoneType::class)
             
             ;
         ;
