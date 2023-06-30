@@ -8,7 +8,7 @@ use App\Entity\Store;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\UX\Dropzone\Form\DropzoneType;
@@ -44,11 +44,13 @@ class DeviceType extends AbstractType
                     'class' => Agency::class,
                     'choice_label' => 'city'])
                     
-            ->add('image', DropzoneType::class)
+            ->add('screen_size', TextType::class, [
+                // 'placeholder' => 'Insérez la taille de l\'écran',
+                'label' => 'Taille de l\'écran',
+                ])
 
-            // ->add('screen_size', IntegerType::class, [
-            //         'placeholder' => 'Choisissez une option',
-            //         ])
+            ->add('image', DropzoneType::class)
+            
             ;
         ;
     }
