@@ -50,9 +50,6 @@ class DeviceController extends AbstractController
             $this->addFlash('success', 'L\'appareil a été bien ajouté au catalogue avec un prix de ' . $price . '€ ! :)');
 
             return $this->redirectToRoute('device_index_stock', ['price' => $price], Response::HTTP_SEE_OTHER);
-            
-        // }else{
-
         }
       
 
