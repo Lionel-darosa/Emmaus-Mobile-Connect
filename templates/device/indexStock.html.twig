@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Device index{% endblock %}
+{% block title %}Stock{% endblock %}
 
 {% block body %}
 
     <h5 class="mt-4 ms-4">
         {{ devices.getTotalItemCount }}
-        téléphones en stock
+        smartphones en stock
     </h5>
 
-    <a href="{{ path('device_new') }}" class="ms-4">Ajouter un téléphone</a>
+    <a href="{{ path('device_new') }}" class="ms-4">Ajouter un smartphone</a>
 
     <div class="table-responsive">
         <table class="table table-hover align-middle">
@@ -17,7 +17,7 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Marque</th>
-                    <th scope="col">modèle</th>
+                    <th scope="col">Modèle</th>
                     <th scope="col" class="col-1">Aperçu</th>
                     <th scope="col">Taille de l'écran</th>
                     <th scope="col">Ram</th>
@@ -34,18 +34,18 @@
                 <tr>
                     <td>{{ device.id }}</td>
                     <td>{{ device.brand|capitalize }}</td>
-                    <td>{{ device.model|replace({'_': " "})|capitalize }}</td>
-                    <td><img id="phone-image" src="{{ device.image }}"></td>
+                    <td>{{ device.model|replace({'_': " "}) }}</td>
+                    <td><img id="phone-image-index" src="{{ device.image }}"></td>
                     <td>{{ device.screenSize }}</td>
                     <td>{{ device.ram }}</td>
                     <td>{{ device.storage }}</td>
-                    <td>{{ device.state }}</td>
-                    <td>{{ device.price }}</td>
+                    <td>{{ device.state|lower|capitalize}}</td>
+                    <td>{{ device.price }}€</td>
                     <td>{{ device.soldAt ? 'Non' : 'Oui' }}</td>
                     <td>{{ device.agency.name|capitalize }}</td>
                     <td>
                         <a href="{{ path('device_show', {'id': device.id}) }}">Voir</a>
-                        <a href="{{ path('device_edit', {'id': device.id}) }}">Editer</a>
+                        <a href="{{ path('device_edit', {'id': device.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
