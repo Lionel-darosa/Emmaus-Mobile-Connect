@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Device;
+use App\Form\DeviceSearchModelType;
+use App\Form\DeviceSearchPriceType;
 use App\Form\DeviceType;
+use App\Form\SellAssistantType;
 use App\Repository\DeviceRepository;
 use App\Service\PriceCalculator;
 use Knp\Component\Pager\PaginatorInterface;
@@ -30,18 +33,32 @@ class DeviceController extends AbstractController
             'devices' => $devices,
         ]);
     }
+
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/comparateur', name: 'index_comparateur', methods: ['GET'])]
+    #[Route('/comparateur', name: 'index_comparateur', methods: ['GET', 'POST'])]
     public function indexComparator(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $devices = $paginator->paginate(
-            $deviceRepository->findAll(),
-            $request->query->getInt('page', 1),
-            8
-        );
+        $form = $this->createForm(SellAssistantType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sort = $form->getData();
+            $devices = $paginator->paginate(
+                $deviceRepository->sortDevices($sort),
+                $request->query->getInt('page', 1),
+                20
+            );
+        } else {
+            $devices = $paginator->paginate(
+                $deviceRepository->findAll(),
+                $request->query->getInt('page', 1),
+                20
+            );
+        }
 
         return $this->render('device/indexComparator.html.twig', [
             'devices' => $devices,
+            'form' => $form,
         ]);
     }
 

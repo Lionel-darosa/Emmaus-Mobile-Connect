@@ -3,7 +3,8 @@
 {% block title %}Recherche{% endblock %}
 
 {% block body %}
-<h5 class="mt-4 ms-4">
+{% include 'device/_sortDevices.html.twig' %}
+    <h5 class="mt-4 ms-4">
         {{ devices.getTotalItemCount }}
         smartphones
     </h5>
