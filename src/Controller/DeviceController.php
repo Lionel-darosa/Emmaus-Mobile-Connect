@@ -7,6 +7,7 @@ use App\Form\DeviceSearchModelType;
 use App\Form\DeviceSearchPriceType;
 use App\Form\DeviceType;
 use App\Form\SellAssistantType;
+use App\Form\StockType;
 use App\Repository\DeviceRepository;
 use App\Service\PriceCalculator;
 use Knp\Component\Pager\PaginatorInterface;
@@ -23,14 +24,34 @@ class DeviceController extends AbstractController
     #[Route('/stock', name: 'index_stock', methods: ['GET'])]
     public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $devices = $paginator->paginate(
-            $deviceRepository->findAll(),
-            $request->query->getInt('page', 1),
-            10
-        );
+        
+        $form = $this->createForm(StockType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sort = $form->getData();
+            $devices = $paginator->paginate(
+                // $deviceRepository->sortDevices($sort), à personnaliser
+                $request->query->getInt('page', 1),
+                20
+            );
+        } else {
+            $devices = $paginator->paginate(
+                $deviceRepository->findAll(),
+                $request->query->getInt('page', 1),
+                20
+            );
+        }
+        
+        // $devices = $paginator->paginate(
+        //     $deviceRepository->findAll(),
+        //     $request->query->getInt('page', 1),
+        //     10
+        // );
 
         return $this->render('device/indexStock.html.twig', [
             'devices' => $devices,
+            'form' => $form,
         ]);
     }
 
@@ -82,15 +103,12 @@ class DeviceController extends AbstractController
 
             return $this->redirectToRoute('device_show', ['id' => $device->getId()], Response::HTTP_SEE_OTHER);
         }
-      
 
         return $this->render('device/new.html.twig', [
             'device' => $device,
             'form' => $form,
         ]);
     }
-
-
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Device $device): Response

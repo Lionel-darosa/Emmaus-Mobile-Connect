@@ -30,6 +30,7 @@ class SellAssistantType extends AbstractType
                 'label' => 'Prix',
                 'required' => false,
             ])
+            
         ;
     }
 
