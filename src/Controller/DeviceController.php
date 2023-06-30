@@ -46,13 +46,13 @@ class DeviceController extends AbstractController
             $devices = $paginator->paginate(
                 $deviceRepository->sortDevices($sort),
                 $request->query->getInt('page', 1),
-                8
+                20
             );
         } else {
             $devices = $paginator->paginate(
                 $deviceRepository->findAll(),
                 $request->query->getInt('page', 1),
-                8
+                20
             );
         }
 

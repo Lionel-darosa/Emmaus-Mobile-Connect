@@ -15,7 +15,7 @@ class SellAssistantType extends AbstractType
     {
         $builder
             ->add('screenSize', CheckboxType::class, [
-                'label' => 'Senior / comfort d\'utilisation',
+                'label' => 'Senior / confort d\'utilisation',
                 'required' => false,
             ])
             ->add('ram', CheckboxType::class, [
@@ -23,7 +23,7 @@ class SellAssistantType extends AbstractType
                 'required' => false,
             ])
             ->add('storage', CheckboxType::class, [
-                'label' => 'Plus de photo/videos',
+                'label' => 'Plus de photos/videos',
                 'required' => false,
             ])
             ->add('price', CheckboxType::class, [
