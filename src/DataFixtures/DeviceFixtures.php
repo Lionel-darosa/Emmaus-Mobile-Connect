@@ -17,7 +17,7 @@ class DeviceFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        for ($i = 1; $i <= 30; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $device = new Device();
             $device->setBrand(array_rand(Device::PHONE));
             $device->setModel(Device::PHONE[$device->getBrand()][array_rand(Device::PHONE[$device->getBrand()])]);

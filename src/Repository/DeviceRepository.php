@@ -39,6 +39,37 @@ class DeviceRepository extends ServiceEntityRepository
         }
     }
 
+    public function sortDevices(array $data)
+    {
+        $queryBuilder = $this->createQueryBuilder('d')
+            ->select('d');
+        
+        if (!empty($data['screenSize'])) {
+            $queryBuilder = $queryBuilder
+                ->addOrderBy('d.screenSize', 'DESC');
+        }
+
+        if (!empty($data['ram'])) {
+            $queryBuilder = $queryBuilder
+                ->addOrderBy('d.ram', 'DESC');
+        }
+
+        if (!empty($data['storage'])) {
+            $queryBuilder = $queryBuilder
+                ->addOrderBy('d.storage', 'DESC');
+        }
+
+        if (!empty($data['price'])) {
+            $queryBuilder = $queryBuilder
+                ->addOrderBy('d.price', 'ASC');
+        }
+
+        $queryBuilder = $queryBuilder
+            ->getQuery();
+        return $queryBuilder->getResult();
+
+    }
+
 //    /**
 //     * @return Device[] Returns an array of Device objects
 //     */
