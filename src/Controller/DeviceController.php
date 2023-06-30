@@ -92,7 +92,9 @@ class DeviceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $deviceRepository->save($device, true);
 
-            return $this->redirectToRoute('device_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'L\'appareil a été bien modifié. Il a un prix de ' . $device->getPrice() . '€ ! :)');
+
+            return $this->redirectToRoute('device_index_stock', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('device/edit.html.twig', [
