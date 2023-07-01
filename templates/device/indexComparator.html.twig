@@ -13,6 +13,10 @@
 {% for device in devices %}
 <div class="card mb-2" style="width: 18rem;">
   <img class="card-img-top" src="{{ device.image }}" alt="Card image cap">
+
+  {# A activer pour uploader l'image avec Vich #}
+  {# <img class="card-img-top" src="{{ vich_uploader_asset(device, 'imageFile') }}" alt="Card image cap"> #}
+  
   <div class="card-body">
     <h5 class="card-title">{{ device.brand|capitalize }}</h5>
     <p class="card-text">  {{ device.model|replace({'_': " "})|capitalize }} <br> Point de vente : {{ device.agency.name|capitalize }}</p>
