@@ -7,7 +7,7 @@
 {% include 'device/_filterDevices.html.twig' %}
 
     <h5 class="mt-4 ms-4">
-        {# {{ devices.getTotalItemCount }} #}
+        {{ devices.getTotalItemCount }}
         smartphones en stock
     </h5>
 
@@ -32,6 +32,7 @@
                 </tr>
             </thead>
             <tbody>
+
             {% for device in devices %}
                 <tr>
                     <td>{{ device.id }}</td>
@@ -60,7 +61,7 @@
     </div>
 
     <div class="navigation d-flex justify-content-center mt-4">
-	    {# {{ knp_pagination_render(devices) }} #}
+	    {{ knp_pagination_render(devices) }}
     </div>
 
 {% endblock %}

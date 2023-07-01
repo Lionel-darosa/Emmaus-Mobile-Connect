@@ -49,6 +49,16 @@ class Device
         '512GB' => 512,
     ];
 
+    public const PRICE = [
+            '20€' => '20',
+            '30€' => '30',
+            '40€' => '40',
+            '50€' => '50',
+            '60€' => '60',
+            '70€' => '70',
+            '80€' => '80',
+        ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

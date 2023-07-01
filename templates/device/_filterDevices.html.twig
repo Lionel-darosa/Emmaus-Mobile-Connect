@@ -1,4 +1,38 @@
 {{ form_start(form) }}
-{{ form_widget(form) }}
-<button>Search</button>
+<div class="margin">
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.searchByBrand) }}
+        </div>
+
+        <div class="col">
+            {{ form_row(form.model) }}
+        </div>
+    </div>
+    
+    <div class="row mt-2">
+        <div class="col">
+            {{ form_row(form.price) }}
+        </div>
+
+        <div class="col">
+            {{ form_row(form.state) }}
+        </div>
+        
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+                {{ form_row(form.agency) }}
+            </div>
+
+    <div class="col">
+        <div class="form-check form-check-inline mt-2">
+            {{ form_row(form.soldAt) }}
+        </div>
+    </div>
+</div>
+            
+<button type="submit" class="btn btn-secondary mt-4">Rechercher</button>
+
 {{ form_end(form) }}

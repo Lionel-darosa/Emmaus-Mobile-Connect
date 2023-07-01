@@ -81,17 +81,15 @@ class DeviceRepository extends ServiceEntityRepository
                 ->setParameter('brand', '%' . $data['searchByBrand'] .'%');
         }
 
-        // $queryBuilder = $queryBuilder
-        //     ->orderBy('d.price', 'DESC')
-        //     ->getQuery();
-
-        //     dd($queryBuilder->getResult());
-        
+        if (!empty($data['model'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.model IN (:model)')
+                ->setParameter('model', $data['model']);
+        }     
         
         if (!empty($data['price'])) {
             $queryBuilder = $queryBuilder
-                ->andWhere('d.price >= :price AND d.price <= :price +10')
-                // ->andWhere('d.price <= :price')
+                ->andWhere('d.price <= :price')
                 ->setParameter('price', $data['price']);
         }
 
@@ -103,9 +101,14 @@ class DeviceRepository extends ServiceEntityRepository
 
         if (!empty($data['soldAt'])) {
             $queryBuilder = $queryBuilder
-            ->andWhere('d.soldAt IN (:soldAt)')
-            ->setParameter('soldAt', $data['soldAt']);
-        }
+                ->andWhere('d.soldAt IS NULL');
+            }
+        
+        // $queryBuilder = $queryBuilder
+        //     ->orderBy('d.price')
+        //     ->getQuery();
+
+        //     dd($queryBuilder->getResult());
 
         if (!empty($data['state'])) {
             $queryBuilder = $queryBuilder

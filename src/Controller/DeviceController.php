@@ -30,7 +30,12 @@ class DeviceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $resultFilters =  $form->getData();
-            $devices = $deviceRepository->filterDevices($resultFilters);
+            // $devices = $deviceRepository->filterDevices($resultFilters);
+            $devices = $paginator->paginate(
+                $deviceRepository->sortDevices($resultFilters),
+                $request->query->getInt('page', 1),
+                100
+            );
     
         } else {
             $devices = $paginator->paginate(
@@ -39,12 +44,6 @@ class DeviceController extends AbstractController
                 20
             );
         }
-        
-        // $devices = $paginator->paginate(
-        //     $deviceRepository->findAll(),
-        //     $request->query->getInt('page', 1),
-        //     10
-        // );
 
         return $this->render('device/indexStock.html.twig', [
             'devices' => $devices,
