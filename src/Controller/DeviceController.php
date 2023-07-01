@@ -21,7 +21,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class DeviceController extends AbstractController
 {
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/stock', name: 'index_stock', methods: ['GET'])]
+    #[Route('/stock', name: 'index_stock', methods: ['GET', 'POST'])]
     public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
         
@@ -29,12 +29,9 @@ class DeviceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $sort = $form->getData();
-            $devices = $paginator->paginate(
-                // $deviceRepository->sortDevices($sort), à personnaliser
-                $request->query->getInt('page', 1),
-                20
-            );
+            $resultFilters =  $form->getData();
+            $devices = $deviceRepository->filterDevices($resultFilters);
+    
         } else {
             $devices = $paginator->paginate(
                 $deviceRepository->findAll(),

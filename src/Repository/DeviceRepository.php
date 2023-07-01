@@ -75,61 +75,53 @@ class DeviceRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('d')
             ->select('d');
 
-        if (!empty($data['searchDevice'])) {
+        if (!empty($data['searchByBrand'])) {
             $queryBuilder = $queryBuilder
-                ->andWhere('d.brand Like :brand')
-                ->andWhere('d.model LIKE :model')
-                ->setParameter('brand', '%' . $data['searchDevice'] . '%');
+                ->andWhere('d.brand LIKE :brand')
+                ->setParameter('brand', '%' . $data['searchByBrand'] .'%');
         }
+
+        // $queryBuilder = $queryBuilder
+        //     ->orderBy('d.price', 'DESC')
+        //     ->getQuery();
+
+        //     dd($queryBuilder->getResult());
+        
         
         if (!empty($data['price'])) {
             $queryBuilder = $queryBuilder
-                ->addOrderBy('d.price');
+                ->andWhere('d.price >= :price AND d.price <= :price +10')
+                // ->andWhere('d.price <= :price')
+                ->setParameter('price', $data['price']);
         }
 
         if (!empty($data['agency'])) {
             $queryBuilder = $queryBuilder
-                ->addOrderBy('d.agency');
-        }
-
-        if (!empty($data['state'])) {
-            $queryBuilder = $queryBuilder
-                ->addOrderBy('d.state');
+                ->andWhere('d.agency IN (:agency)')
+                ->setParameter('agency', $data['agency']);
         }
 
         if (!empty($data['soldAt'])) {
             $queryBuilder = $queryBuilder
-                ->addOrderBy('d.soldAT');
+            ->andWhere('d.soldAt IN (:soldAt)')
+            ->setParameter('soldAt', $data['soldAt']);
         }
 
-        $queryBuilder = $queryBuilder
+        if (!empty($data['state'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.state IN (:state)')
+                ->setParameter('state', $data['state']);
+        }
+
+        $queryBuilder ->orderBy('d.price', 'DESC')
             ->getQuery();
+
+        $queryBuilder = $queryBuilder
+            ->orderBy('d.price')
+            ->getQuery();
+
         return $queryBuilder->getResult();
 
     }
 
-//    /**
-//     * @return Device[] Returns an array of Device objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Device
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
