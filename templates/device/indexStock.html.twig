@@ -36,6 +36,10 @@
                     <td>{{ device.brand|capitalize }}</td>
                     <td>{{ device.model|replace({'_': " "}) }}</td>
                     <td><img id="phone-image-index" src="{{ device.image }}"></td>
+
+                    {# A activer pour uploader l'image avec Vich #}
+                    {# <td><img id="phone-image-index" src="{{ vich_uploader_asset(device, 'imageFile') }}"></td> #}
+                    
                     <td>{{ device.screenSize }}</td>
                     <td>{{ device.ram }}</td>
                     <td>{{ device.storage }}</td>
