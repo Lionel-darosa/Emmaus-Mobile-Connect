@@ -52,6 +52,7 @@ class DeviceType extends AbstractType
 
             ->add('imageFile', DropzoneType::class, [ //VichImageType
                 'label' => 'Image du téléphone',
+                'required' => false,  
                 ])  
             ;
         ;

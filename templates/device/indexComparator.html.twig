@@ -29,8 +29,8 @@
           </ul>
           <div class="card-body text-center">
             <h5>{{ device.price }}€</h5>
-            <a href="{{ path('device_show', {'id': device.id}) }}" class="btn btn-secondary mt-2">Voir</a>
-            <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-primary mt-2">Modifier</a>
+            <a href="{{ path('device_show', {'id': device.id}) }}" class="btn btn-primary mt-2">Voir</a>
+            <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-secondary mt-2">Modifier</a>
           </div>
         </div>
       {% endfor %}
