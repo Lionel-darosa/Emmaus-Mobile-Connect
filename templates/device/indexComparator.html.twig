@@ -1,39 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recherche{% endblock %}
+{% block title %}Comparateur{% endblock %}
 
 {% block body %}
-{% include 'device/_sortDevices.html.twig' %}
-    <h5 class="mt-4 ms-4">
+<div class="mx-auto p-2" style="width: 80rem;">
+  {% include 'device/_sortDevices.html.twig' %}
+    <h5 class="mt-4">
         {{ devices.getTotalItemCount }}
         smartphones
     </h5>
-<div class="container text-center mt-4">
-	<div class="row justify-content-center">
-{% for device in devices %}
-<div class="card mb-2" style="width: 18rem;">
-  <img class="card-img-top" src="{{ device.image }}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ device.brand|capitalize }}</h5>
-    <p class="card-text">  {{ device.model|replace({'_': " "})|capitalize }} <br> Point de vente : {{ device.agency.name|capitalize }}</p>
-    {% if device.soldAt is not null %}<span class="badge bg-success" style="witdh: 2rem;">Disponible</span>{% else %}<span class="badge rounded-pill bg-warning">Vendu</span>{% endif %}
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Ecran : {{ device.screenSize }} Pouce</li>
-    <li class="list-group-item">{{ device.ram }} G RAM - {{ device.storage }} G</li>
-    <li class="list-group-item">Etat : {{ device.state|lower }}</li>
-  </ul>
-    <div class="card-body text-center">
-      <h5>{{ device.price }}€</h5>
-      <a href="{{ path('device_show', {'id': device.id}) }}" class="btn btn-secondary mt-2">Voir</a>
-      <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-primary mt-2">Modifier</a>
+</div>
+  <div class="margin text-center">
+    <div class="row justify-content-center gap-4">
+      {% for device in devices %}
+        <div class="card mb-2" style="width: 18rem;">
+          <img class="card-img-top" src="{{ device.image }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ device.brand|capitalize }}</h5>
+                <p class="card-text">  {{ device.model|replace({'_': " "})|capitalize }} <br> Point de vente : {{ device.agency.name|capitalize }}</p>
+                {% if device.soldAt is not null %}<span class="badge bg-success" style="witdh: 2rem;">Disponible</span>{% else %}<span class="badge rounded-pill bg-warning">Vendu</span>{% endif %}
+            </div>
+        
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ecran : {{ device.screenSize }} Pouce</li>
+            <li class="list-group-item">{{ device.ram }} G RAM - {{ device.storage }} G</li>
+            <li class="list-group-item">Etat : {{ device.state|lower }}</li>
+          </ul>
+          <div class="card-body text-center">
+            <h5>{{ device.price }}€</h5>
+            <a href="{{ path('device_show', {'id': device.id}) }}" class="btn btn-secondary mt-2">Voir</a>
+            <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-primary mt-2">Modifier</a>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-</div>
-{% endfor %}
-	</div>
-</div>
-		<div class="navigation d-flex justify-content-center mt-4">
-			{{ knp_pagination_render(devices) }}
-		</div>
-	</body>
+  </div>
+  <div class="navigation d-flex justify-content-center mt-4">
+    {{ knp_pagination_render(devices) }}
+  </div>
 {% endblock %}

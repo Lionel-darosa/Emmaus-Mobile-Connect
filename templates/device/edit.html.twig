@@ -5,18 +5,18 @@
 {% block body %}
     <div class="form">
         <h3>Modifier {{ device.model|replace({'_': " "}) }} </h3>
-        
+
         {{ include('device/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    </div>
-<div class="text-center">
-    {{ include('device/_delete_form.html.twig') }}
+        <div class="text-center">
+            {{ include('device/_delete_form.html.twig') }}
         </div>
-    {# <a href="{{ path('device_index_stock') }}">Liste des smartphones</a>
-    <a href="{{ path('device_index_comparateur') }}">Comparer</a> #}
-        <a href="{{ path('device_index_comparateur') }}" class="btn btn-secondary mt-4">Comparer</a>
-        <a href="{{ path('device_index_stock') }}" class="btn btn-warning mt-4">Stock</a>
-    
 
-    
+        <div class="text-center">
+            <div class="btn-group mt-4 mb-2">
+                <a href="{{ path('device_index_comparateur') }}" class="btn btn-primary">Comparer</a>
+                <a href="{{ path('device_index_stock') }}" class="btn btn-dark">Rechercher</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

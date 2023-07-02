@@ -3,7 +3,6 @@
 {% block title %}{{ device.model|replace({'_': " "}) }}{% endblock %}
 
 {% block body %}
-
 <div class="margin">
     <div class=" row justify-content-center">
         <h3 class="text-center mt-2">{{ device.brand|capitalize }}</h3>
@@ -58,17 +57,10 @@
                     </tr>
                 </tbody>
             </table>
-            <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-primary mt-4">Modifier</a>
-            {# {{ include('device/_delete_form.html.twig') }} #}
-            <a href="{{ path('device_index_comparateur') }}" class="btn btn-secondary mt-4">Comparer</a>
-            <a href="{{ path('device_index_stock') }}" class="btn btn-warning mt-4">Stock</a>
-            
-        </div>
-    
-        <div class="text-center">
-
+            <a href="{{ path('device_edit', {'id': device.id}) }}" class="btn btn-secondary mt-4">Modifier</a>
+            <a href="{{ path('device_index_comparateur') }}" class="btn btn-primary mt-4">Comparer</a>
+            <a href="{{ path('device_index_stock') }}" class="btn btn-dark mt-4">Rechercher</a>
         </div>
     </div>
 </div>
-
 {% endblock %}

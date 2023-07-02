@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Device;
-use App\Form\DeviceSearchModelType;
-use App\Form\DeviceSearchPriceType;
 use App\Form\DeviceType;
 use App\Form\SellAssistantType;
 use App\Form\StockType;
@@ -30,13 +28,7 @@ class DeviceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $resultFilters =  $form->getData();
-            // $devices = $deviceRepository->filterDevices($resultFilters);
-            $devices = $paginator->paginate(
-                $deviceRepository->sortDevices($resultFilters),
-                $request->query->getInt('page', 1),
-                100
-            );
-    
+            $devices = $deviceRepository->filterDevices($resultFilters);
         } else {
             $devices = $paginator->paginate(
                 $deviceRepository->findAll(),
@@ -85,7 +77,6 @@ class DeviceController extends AbstractController
     {
         $device = new Device();
 
-        //Form sauvegarder
         $form = $this->createForm(DeviceType::class, $device);
         $form->handleRequest($request);
 

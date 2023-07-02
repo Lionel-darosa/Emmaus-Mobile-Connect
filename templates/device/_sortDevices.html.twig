@@ -1,33 +1,29 @@
 {{ form_start(form) }}
     <div class="margin">
-        <div class="row">
+        <h5 class="mb-4"> Besoins du client </h5>
+        <div class="row justify-content-center">
             <div class="col">
                 <div class="form-check form-check-inline">
                     {{ form_row(form.screenSize) }}
                 </div>
             </div>
-            
             <div class="col">
                 <div class="form-check form-check-inline">
                     {{ form_row(form.ram) }}
                 </div>
             </div>
         </div>
-            
         <div class="row">
             <div class="col">
                 <div class="form-check form-check-inline">
                 {{ form_row(form.storage) }}
                 </div>
             </div>
-
             <div class="col">
                 <div class="form-check form-check-inline">
                     {{ form_row(form.price) }}
                 </div>
             </div>
         </div>
-
-    <button type="submit" class="btn btn-secondary mt-2">Rechercher</button>
-    
+    <button type="submit" class="btn btn-secondary mt-4 mb-4">Comparer</button>
 {{ form_end(form) }}
