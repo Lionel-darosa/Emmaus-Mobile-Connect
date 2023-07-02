@@ -3,10 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Device;
-use App\Form\DeviceSearchModelType;
-use App\Form\DeviceSearchPriceType;
 use App\Form\DeviceType;
 use App\Form\SellAssistantType;
+use App\Form\StockType;
 use App\Repository\DeviceRepository;
 use App\Service\PriceCalculator;
 use Knp\Component\Pager\PaginatorInterface;
@@ -16,21 +15,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/device', name:'device_')]
+#[Route('/smartphone', name:'device_')]
 class DeviceController extends AbstractController
 {
     #[IsGranted('ROLE_EMPLOYEE')]
-    #[Route('/stock', name: 'index_stock', methods: ['GET'])]
+    #[Route('/stock', name: 'index_stock', methods: ['GET', 'POST'])]
     public function index(DeviceRepository $deviceRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $devices = $paginator->paginate(
-            $deviceRepository->findAll(),
-            $request->query->getInt('page', 1),
-            10
-        );
+        
+        $form = $this->createForm(StockType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $resultFilters =  $form->getData();
+            $devices = $deviceRepository->filterDevices($resultFilters);
+        } else {
+            $devices = $paginator->paginate(
+                $deviceRepository->findAll(),
+                $request->query->getInt('page', 1),
+                20
+            );
+        }
 
         return $this->render('device/indexStock.html.twig', [
             'devices' => $devices,
+            'form' => $form,
         ]);
     }
 
@@ -68,7 +77,6 @@ class DeviceController extends AbstractController
     {
         $device = new Device();
 
-        //Form sauvegarder
         $form = $this->createForm(DeviceType::class, $device);
         $form->handleRequest($request);
 
@@ -82,7 +90,6 @@ class DeviceController extends AbstractController
 
             return $this->redirectToRoute('device_show', ['id' => $device->getId()], Response::HTTP_SEE_OTHER);
         }
-      
 
         return $this->render('device/new.html.twig', [
             'device' => $device,
@@ -90,9 +97,7 @@ class DeviceController extends AbstractController
         ]);
     }
 
-
-
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    #[Route('/voir/{id}', name: 'show', methods: ['GET'])]
     public function show(Device $device): Response
     {
         return $this->render('device/show.html.twig', [
@@ -100,7 +105,7 @@ class DeviceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/modifier', name: 'edit', methods: ['GET','POST'])]
     public function edit(Request $request, Device $device, DeviceRepository $deviceRepository, PriceCalculator $priceCalculator): Response
     {
         $form = $this->createForm(DeviceType::class, $device);
@@ -111,9 +116,9 @@ class DeviceController extends AbstractController
             $device->setPrice($price);
             $deviceRepository->save($device, true);
 
-            $this->addFlash('success', 'L\'appareil a été bien modifié. Il a un prix de ' . $device->getPrice() . '€ ! :)');
+            $this->addFlash('success', 'Le smartphone a été bien modifié ! :)');
 
-            return $this->redirectToRoute('device_index_stock', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('device_index_stock');
         }
 
         return $this->render('device/edit.html.twig', [
@@ -122,15 +127,13 @@ class DeviceController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'delete', methods: ['POST', 'GET'])]
-    public function delete( Device $device, Request $request, DeviceRepository $deviceRepository): Response
+    #[Route('/delete/{id}', name: 'delete', methods: ['POST'])]
+    public function delete(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'. $device->getId(), $request->request->get('_token'))) {
             $deviceRepository->remove($device, true);
+            $this->addFlash('danger', 'Le smartphone a été bien supprimé du stock');
         }
-
-        $this->addFlash('danger', 'Oh! L\'appareil a été bien supprimé du catalogue! :(');
-
-        return $this->redirectToRoute('device_index_stock', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('device_index_stock');
     }
 }

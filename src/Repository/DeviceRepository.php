@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Device;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Device>
@@ -16,7 +18,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class DeviceRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private PaginatorInterface $paginatorInterface)
     {
         parent::__construct($registry, Device::class);
     }
@@ -70,28 +72,54 @@ class DeviceRepository extends ServiceEntityRepository
 
     }
 
-//    /**
-//     * @return Device[] Returns an array of Device objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function filterDevices(array $data): PaginationInterface
+    {
+        $queryBuilder = $this->createQueryBuilder('d')
+            ->select('d');
 
-//    public function findOneBySomeField($value): ?Device
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if (!empty($data['searchByBrand'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.brand LIKE :brand')
+                ->setParameter('brand', '%' . $data['searchByBrand'] .'%');
+        }
+
+        if (!empty($data['model'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.model IN (:model)')
+                ->setParameter('model', $data['model']);
+        }     
+        
+        if (!empty($data['price'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.price <= :price')
+                ->setParameter('price', $data['price']);
+        }
+
+        if (!empty($data['state'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.state IN (:state)')
+                ->setParameter('state', $data['state']);
+        }
+
+        if (!empty($data['agency'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.agency IN (:agency)')
+                ->setParameter('agency', $data['agency']);
+        }
+
+        if (!empty($data['soldAt'])) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('d.soldAt IS NULL');
+            }
+
+        $queryBuilder
+            ->orderBy('d.price')
+            ->getQuery()
+            ->getResult();
+
+        $devices = $this->paginatorInterface->paginate($queryBuilder, 1, 100);
+
+        return $devices;
+    }
+
 }

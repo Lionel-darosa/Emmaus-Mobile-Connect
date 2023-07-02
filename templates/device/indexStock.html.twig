@@ -3,15 +3,18 @@
 {% block title %}Stock{% endblock %}
 
 {% block body %}
+{% include 'device/_filterDevices.html.twig' %}
 
-    <h5 class="mt-4 ms-4">
+<div class="d-flex mb-3">
+    <h5 class="me-auto p-2">
         {{ devices.getTotalItemCount }}
         smartphones en stock
     </h5>
 
-    <a href="{{ path('device_new') }}" class="ms-4">Ajouter un smartphone</a>
+    <a href="{{ path('device_new') }}" class="p-2">Ajouter un smartphone</a>
+</div>
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-4">
         <table class="table table-hover align-middle">
             <thead>
                 <tr>
@@ -30,6 +33,7 @@
                 </tr>
             </thead>
             <tbody>
+
             {% for device in devices %}
                 <tr>
                     <td>{{ device.id }}</td>
@@ -54,7 +58,12 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="9">no records found</td>
+                    {# <td colspan="9">no records found</td> #}
+                <div class="alert alert-dismissible alert-danger mt-4">
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+					<p class="mb-0">Aucun smartphone disponible avec ces critères</a>.</p>
+				</div>
+
                 </tr>
             {% endfor %}
             </tbody>
@@ -64,5 +73,4 @@
     <div class="navigation d-flex justify-content-center mt-4">
 	    {{ knp_pagination_render(devices) }}
     </div>
-
 {% endblock %}
