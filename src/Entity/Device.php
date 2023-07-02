@@ -6,8 +6,11 @@ use App\Entity\Agency;
 use App\Repository\DeviceRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
+#[Vich\Uploadable]
 class Device
 {
 
@@ -86,6 +89,9 @@ class Device
     #[ORM\Column(nullable: true)]
     private ?float $price = null;
 
+    #[Vich\UploadableField(mapping: 'devices', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
@@ -158,6 +164,22 @@ class Device
     public function setPrice(float $price = null): void
     {
         $this->price = $price;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getImage(): ?string

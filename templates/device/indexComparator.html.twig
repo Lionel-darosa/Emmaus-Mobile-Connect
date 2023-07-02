@@ -15,12 +15,13 @@
       {% for device in devices %}
         <div class="card mb-2" style="width: 18rem;">
           <img class="card-img-top" src="{{ device.image }}" alt="Card image cap">
+          {# A activer pour uploader l'image avec Vich #}
+          {# <img class="card-img-top" src="{{ vich_uploader_asset(device, 'imageFile') }}" alt="Card image cap"> #}
             <div class="card-body">
                 <h5 class="card-title">{{ device.brand|capitalize }}</h5>
                 <p class="card-text">  {{ device.model|replace({'_': " "})|capitalize }} <br> Point de vente : {{ device.agency.name|capitalize }}</p>
                 {% if device.soldAt is not null %}<span class="badge bg-success" style="witdh: 2rem;">Disponible</span>{% else %}<span class="badge rounded-pill bg-warning">Vendu</span>{% endif %}
             </div>
-        
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Ecran : {{ device.screenSize }} Pouce</li>
             <li class="list-group-item">{{ device.ram }} G RAM - {{ device.storage }} G</li>

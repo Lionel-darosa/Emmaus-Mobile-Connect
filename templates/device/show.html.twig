@@ -9,7 +9,11 @@
         <h4 class="text-center">{{ device.model|replace({'_': " "}) }}</h4>
 
         <div class="col-6 mt-4">
-            <img id="phone-image-show"src="{{ device.image }}">
+            <img id="phone-image-show" src="{{ device.image }}">
+
+            {# A activer pour uploader l'image avec Vich #}
+            {# <img id="phone-image-show" src="{{ vich_uploader_asset(device, 'imageFile') }}"> #}
+            
         </div>
 
         <div class="col-6 mt-4">

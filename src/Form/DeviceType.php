@@ -7,11 +7,13 @@ use App\Entity\Device;
 use App\Entity\Store;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\UX\Dropzone\Form\DropzoneType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class DeviceType extends AbstractType
 {
@@ -45,12 +47,12 @@ class DeviceType extends AbstractType
                     'choice_label' => 'city'])
                     
             ->add('screen_size', TextType::class, [
-                // 'placeholder' => 'Insérez la taille de l\'écran',
                 'label' => 'Taille de l\'écran',
                 ])
 
-            // ->add('image', DropzoneType::class)
-            
+            ->add('imageFile', DropzoneType::class, [ //VichImageType
+                'label' => 'Image du téléphone',
+                ])  
             ;
         ;
     }
