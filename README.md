@@ -1,23 +1,28 @@
-# Emmaüs Mobile Connect
-*a hackathon project*
+## Emmaüs Mobile Connect
+*A hackathon project*
 
 ### Description
 
-**Context :**
+**Context**
+
 Emmaüs Connect is deeply committed to promoting digital inclusion on a daily basis. They address this objective by selling electronic goods, with a particular emphasis on smartphones, which play a crucial role in bridging the digital divide.
 
-**Hackathon mission :**
+**Hackathon mission**
+
 Our mission was to develop a smartphone classification tool capable of generating accurate selling prices based on key features such as RAM, storage, and more.
 
-**About our work :**
+**About our work**
+
 In addition to the development of the smartphone pricing tool, we decided to go a step further by creating a sales assistant feature. This addition is intended to enable the volunteers at Emmaüs, who may not be familiar with smartphone technology, to better cater to the specific needs of customers.
 
 It is with great pride that our comprehensive approach earned us the distinction of winning the "Best Concept" award.
 
-**You can find a demo of the application here:**
+**You can find a demo of the application here :**
+
 https://www.loom.com/share/a952e632496e45788dcad61332cc5e5c?sid=8b2dbf5a-c546-4965-884c-196ef57503a7
 
 To build this app, we used Symfony 6.3.0.
+
 Here are the steps to use the application :
 
 ### Steps
