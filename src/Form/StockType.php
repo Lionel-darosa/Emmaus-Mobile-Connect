@@ -55,7 +55,7 @@ class StockType extends AbstractType
             ->add('soldAt', CheckboxType::class, [
                 'label' => 'En stock',
                 'attr' => [
-                    'class'=>'form-check-input',
+                    'class'=>'form-check-input border-primary',
                     'class-label'=> 'form-check-label',
                 ],
                 'required' => false,

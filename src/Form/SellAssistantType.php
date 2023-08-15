@@ -16,7 +16,7 @@ class SellAssistantType extends AbstractType
         $builder
             ->add('screenSize', CheckboxType::class, [
                 'attr' => [
-                    'class'=> 'form-check-input',
+                    'class'=> 'form-check-input border-primary',
                     'class-label'=> 'form-check-label',
                 ],
                 'label' => 'Senior / confort d\'utilisation',
@@ -24,7 +24,7 @@ class SellAssistantType extends AbstractType
             ])
             ->add('ram', CheckboxType::class, [
                 'attr' => [
-                    'class'=> 'form-check-input',
+                    'class'=> 'form-check-input border-primary',
                     'class-label'=> 'form-check-label',
                 ],
                 'label' => "Nombreuses applications simultanées",
@@ -32,7 +32,7 @@ class SellAssistantType extends AbstractType
             ])
             ->add('storage', CheckboxType::class, [
                 'attr' => [
-                    'class'=> 'form-check-input',
+                    'class'=> 'form-check-input border-primary',
                     'class-label'=> 'form-check-label',
                 ],
                 'label' => 'Stockage de photos et vidéos',
@@ -40,7 +40,7 @@ class SellAssistantType extends AbstractType
             ])
             ->add('price', CheckboxType::class, [
                 'attr' => [
-                    'class'=> 'form-check-input',
+                    'class'=> 'form-check-input border-primary',
                     'class-label'=> 'form-check-label',
                 ],
                 'label' => 'Prix',
